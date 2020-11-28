@@ -6,8 +6,8 @@
 Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
 {
 
-   int         screenWidth = 1280; //screen_width();
-   int         screenHeight = 1024; //screen_height();
+   int screenWidth = 1280; //screen_width();
+   int screenHeight = 1024; //screen_height();
 
 
    cout << "const Aquarium" << endl;
