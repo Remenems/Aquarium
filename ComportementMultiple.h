@@ -3,20 +3,25 @@
 
 #include "IComportement.h"
 
+#include "ComportementPeureuse.h"
+#include "ComportementGregaire.h"
+#include "ComportementKamikaze.h"
+#include "ComportementPrevoyante.h"
+
+#include <vector>
+
 using namespace std;
 
 class ComportementMultiple : public IComportement
 {
     public:
+        ComportementMultiple(Bestiole& bestioleAss);
         tuple<float,float> calculDirection(vector<Bestiole*> voisins);
 
     private:
-        IComportement comportementPeureuse;
-        IComportement comportementGregaire;
-        IComportement comportementPrevoyante;
-        IComportement comportementKamikaze;
-
-        IComportement comportementActif;
+        vector<IComportement> comportements;
+        
+        IComportement* comportementActif;
         int tempsAvantChangementDeComportement;
 };
 

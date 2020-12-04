@@ -10,6 +10,7 @@ using namespace std;
 class IComportement
 {
     public:
+        IComportement(Bestiole& bestioleAss) : bestioleAssociee(bestioleAss){};
         virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
     protected:
         Bestiole& bestioleAssociee;

@@ -8,6 +8,7 @@ using namespace std;
 class ComportementKamikaze : public IComportement
 {
     public:
+        ComportementKamikaze(Bestiole& bestioleAss) : IComportement(bestioleAss){};
         tuple<float,float> calculDirection(vector<Bestiole*> voisins);
     
     private:

@@ -8,6 +8,7 @@ using namespace std;
 class ComportementPrevoyante : public IComportement
 {
     public:
+        ComportementPrevoyante(Bestiole& bestioleAss) : IComportement(bestioleAss){};
         tuple<float,float> calculDirection(vector<Bestiole*> voisins);
 };
 

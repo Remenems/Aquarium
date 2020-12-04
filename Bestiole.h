@@ -79,7 +79,7 @@ public :
    //accesseurs des caractéristiques spatiales 
    float getDirection();
    float getVitesse();
-   int getPosition();
+   tuple<int,int> getPosition();
    vector<Bestiole*> getBestiolesVoisines();
 
    void setDirection();
