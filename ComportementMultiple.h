@@ -23,6 +23,8 @@ class ComportementMultiple : public IComportement
         
         IComportement* comportementActif;
         int tempsAvantChangementDeComportement;
+
+        static const int tempsEntreDeuxChangementsDeComportement = 10;
 };
 
 #endif
