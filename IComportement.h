@@ -9,7 +9,10 @@ using namespace std;
 
 class IComportement
 {
-    virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
+    public:
+        virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
+    protected:
+        Bestiole& bestioleAssociee;
 };
 
 #endif
