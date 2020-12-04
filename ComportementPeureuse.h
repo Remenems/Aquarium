@@ -7,7 +7,11 @@ using namespace std;
 
 class ComportementPeureuse : public IComportement
 {
+    public:
+        tuple<float,float> calculDirection(vector<IPrototypeBestiole*> voisins);
 
+    private:
+        int seuilAvantPeur;
 };
 
 #endif
