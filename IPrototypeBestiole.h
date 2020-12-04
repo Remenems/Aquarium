@@ -3,5 +3,5 @@
 class IPrototypeBestiole
 {
     public:
-    virtual IPrototypeBestiole clone() = 0;
+    virtual IPrototypeBestiole* clone() = 0;
 };

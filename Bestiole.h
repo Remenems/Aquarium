@@ -3,6 +3,9 @@
 
 
 #include "UImg.h"
+#include <vector>
+#include "IPrototypeBestiole.h"
+#include <string>
 
 #include <iostream>
 
@@ -12,42 +15,81 @@ using namespace std;
 class Milieu;
 
 
-class Bestiole
+class Bestiole : public IPrototypeBestiole
 {
 
+//attributs
 private :
-   static const double     AFF_SIZE;
-   static const double     MAX_VITESSE;
-   static const double     LIMITE_VUE;
 
-   static int              next;
+   //accessoires
+   float camouflage;
+   float carapace;
+   float nageoire;
 
-private :
-   int               identite;
-   int               x, y;
-   double            cumulX, cumulY;
-   double            orientation;
-   double            vitesse;
+   //Caractéristiques "physiques" (non modifiafle sauf intervention extérieur)
+   float taille;
+   int dateDeces;
+   float probabiliteDecesCollision;
+   float probabiliteClonage;
+   //IComportement* comportement;
 
+   //Caractéristiques "spatiales" (modifié au cours de la simulation)
+   float direction;
+   float vitesse;
+   int x, y;
+   vector<Bestiole*> bestiolesVoisines;
+
+   //caractéristiques visuelles
    T               * couleur;
 
-private :
-   void bouge( int xLim, int yLim );
+//méthodes
+public :
 
-public :                                           // Forme canonique :
-   Bestiole( void );                               // Constructeur par defaut
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole( void );                              // Destructeur
-                                                   // Operateur d'affectation binaire par defaut
-   void action( Milieu & monMilieu );
-   void draw( UImg & support );
+   //void changerComportement(IComportement*);
 
-   bool jeTeVois( const Bestiole & b ) const;
+   Bestiole* clone() = 0;
 
-   void initCoords( int xLim, int yLim );
+   bool mourrirSiCollision();
+   virtual vector<Bestiole*> detecter() = 0;
+   bool aiJeCeCapteur(string capteur);
 
-   friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
+   void draw(UImg & support);
+   void actualiserPosition();
 
+   // accesseurs des accessoires
+   void changerNageoire(float coefficient);
+   void changerCamouflage(float coefficient);
+   void changerCarapace(float coefficient);
+
+   float getNageoire();
+   float getCamouflage();
+   float getCarapace();
+
+   // accesseurs des caractéristiques physiques
+   float getTaille();
+   int getDateDeces();
+   float getProbabiliteDecesCollision();
+   float getProbabiliteClonage();
+
+   void setTaille();
+   void setDateDeces();
+   void setProbabiliteDecesCollision();
+   void setProbabiliteClonage();
+
+   //accesseurs des caractéristiques spatiales 
+   float getDirection();
+   float getVitesse();
+   int getPosition();
+   vector<Bestiole*> getBestiolesVoisines();
+
+   void setDirection();
+   void setVitesse();
+   void setPosition();
+   void setBestiolesVoisines();
+
+   //accesseurs des caractériques visuelles
+   T getCouleur();
+   void setCouleur();
 };
 
 
