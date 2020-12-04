@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <vector>
-#include "IPrototypeBestiole.h"
+#include "Bestiole.h"
 
 using namespace std;
 
 class IComportement
 {
-    virtual tuple<float,float> calculDirection(vector<IPrototypeBestiole*> voisins) = 0;
+    virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
 };
 
 #endif

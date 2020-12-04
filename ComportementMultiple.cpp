@@ -4,7 +4,7 @@
 
 using namespace std;
 
-tuple<float,float> ComportementMultiple::calculDirection(vector<IPrototypeBestiole*> voisins)
+tuple<float,float> ComportementMultiple::calculDirection(vector<Bestiole*> voisins)
 {
     //TODO Implémentation de caculDirection
     return make_tuple(0,0);
