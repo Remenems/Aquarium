@@ -9,6 +9,9 @@ class ComportementKamikaze : public IComportement
 {
     public:
         tuple<float,float> calculDirection(vector<Bestiole*> voisins);
+    
+    private:
+        static const int coefficientFonce = 3;
 };
 
 #endif
