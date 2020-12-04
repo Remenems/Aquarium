@@ -6,6 +6,7 @@
 #include <vector>
 #include "IPrototypeBestiole.h"
 #include <string>
+#include <tuple>
 
 #include <iostream>
 
@@ -31,13 +32,17 @@ private :
    int dateDeces;
    float probabiliteDecesCollision;
    float probabiliteClonage;
-   //IComportement* comportement;
+   //IComportement& comportement;
 
    //Caractéristiques "spatiales" (modifié au cours de la simulation)
    float direction;
    float vitesse;
-   int x, y;
+   tuple<int, int> position;
+   int x = get<0>(position);
+   int y = get<1>(position);
    vector<Bestiole*> bestiolesVoisines;
+   double cumulX = 0;
+   double cumulY = 0;
 
    //caractéristiques visuelles
    T               * couleur;
@@ -54,7 +59,8 @@ public :
    bool aiJeCeCapteur(string capteur);
 
    void draw(UImg & support);
-   void actualiserPosition();
+   void repositionnerBestiole(int xLim, int yLim);
+   float distanceEntreBestioles(Bestiole& b);
 
    // accesseurs des accessoires
    void changerNageoire(float coefficient);
@@ -71,25 +77,29 @@ public :
    float getProbabiliteDecesCollision();
    float getProbabiliteClonage();
 
-   void setTaille();
-   void setDateDeces();
-   void setProbabiliteDecesCollision();
-   void setProbabiliteClonage();
+   void setTaille(float taille);
+   void setDateDeces(int dateDeces);
+   void setProbabiliteDecesCollision(float p);
+   void setProbabiliteClonage(float p);
 
    //accesseurs des caractéristiques spatiales 
    float getDirection();
    float getVitesse();
-   int getPosition();
+   tuple<int, int> getPosition();
+   int getX();
+   int getY();
    vector<Bestiole*> getBestiolesVoisines();
 
-   void setDirection();
-   void setVitesse();
-   void setPosition();
-   void setBestiolesVoisines();
+   void setDirection(float direction);
+   void setVitesse(float vitesse);
+   void setPosition(tuple<int, int> position);
+   void setX(int x);
+   void setY(int y);
+   void setBestiolesVoisines(vector<Bestiole*> bV);
 
    //accesseurs des caractériques visuelles
-   T getCouleur();
-   void setCouleur();
+   T* getCouleur();
+   void setCouleur(T* couleur);
 };
 
 

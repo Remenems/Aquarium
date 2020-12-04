@@ -24,3 +24,5 @@ class Clones
         Bestiole* getPrevoyante() const;
         Bestiole* getMultiple() const;
 };
+
+#endif
