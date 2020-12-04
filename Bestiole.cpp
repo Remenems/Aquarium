@@ -4,16 +4,9 @@
 
 #include <cstdlib>
 #include <cmath>
+#include <tuple>
 
-
-const double Bestiole::AFF_SIZE = 8.;
-const double Bestiole::MAX_VITESSE = 10.;
-const double Bestiole::LIMITE_VUE = 30.;
-
-int Bestiole::next = 0;
-
-
-Bestiole::Bestiole( void )
+/*Bestiole::Bestiole( void )
 {
 
    identite = ++next;
@@ -67,15 +60,19 @@ void Bestiole::initCoords( int xLim, int yLim )
    x = rand() % xLim;
    y = rand() % yLim;
 
-}
+}*/
 
 
-void Bestiole::bouge( int xLim, int yLim )
+void Bestiole::repositionnerBestiole( int xLim, int yLim )
 {
 
+   tuple<float, float> coupleDirectionVitesse = make_tuple(0, 0);//comportement.calculDirection();
+   direction = get<0>(coupleDirectionVitesse);
+   float vitessePourCeTour = vitesse*get<1>(coupleDirectionVitesse);
+
    double nx, ny;
-   double dx = cos( orientation )*vitesse;
-   double dy = -sin( orientation )*vitesse;
+   double dx = cos( direction )*vitessePourCeTour*nageoire;
+   double dy = -sin( direction )*vitessePourCeTour*nageoire;
    int cx, cy;
 
 
@@ -86,7 +83,7 @@ void Bestiole::bouge( int xLim, int yLim )
    ny = y + dy + cy;
 
    if ( (nx < 0) || (nx > xLim - 1) ) {
-      orientation = M_PI - orientation;
+      direction = M_PI - direction;
       cumulX = 0.;
    }
    else {
@@ -95,53 +92,144 @@ void Bestiole::bouge( int xLim, int yLim )
    }
 
    if ( (ny < 0) || (ny > yLim - 1) ) {
-      orientation = -orientation;
+      direction = -direction;
       cumulY = 0.;
    }
    else {
       y = static_cast<int>( ny );
       cumulY += ny - y;
    }
-
 }
 
-
-void Bestiole::action( Milieu & monMilieu )
+bool Bestiole::mourrirSiCollision()
 {
-
-   bouge( monMilieu.getWidth(), monMilieu.getHeight() );
-
+   float p = static_cast<float>( rand() )/RAND_MAX;
+   return (p < probabiliteDecesCollision);
 }
 
+bool Bestiole::aiJeCeCapteur(string capteur){
+   return false; //à modifier
+}
 
 void Bestiole::draw( UImg & support )
 {
 
-   double xt = x + cos( orientation )*AFF_SIZE/2.1;
-   double yt = y - sin( orientation )*AFF_SIZE/2.1;
+   double xt = x + cos( direction )*taille/2.1;
+   double yt = y - sin( direction )*taille/2.1;
 
 
-   support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
-   support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
-
-}
-
-
-bool operator==( const Bestiole & b1, const Bestiole & b2 )
-{
-
-   return ( b1.identite == b2.identite );
+   support.draw_ellipse( x, y, taille, taille/5., -direction/M_PI*180., couleur );
+   support.draw_circle( xt, yt, taille/2., couleur );
 
 }
 
+float Bestiole::distanceEntreBestioles(Bestiole& b){
+   int dx = x - b.getX();
+   int dy = y - b.getY();
+}
 
-bool Bestiole::jeTeVois( const Bestiole & b ) const
-{
+//accesseurs
 
-   double dist;
+float Bestiole::getDirection(){
+   return direction;
+}
 
+void Bestiole::setDirection(float dir){
+   direction = dir;
+}
 
-   dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
-   return ( dist <= LIMITE_VUE );
+float Bestiole::getVitesse(){
+   return vitesse;
+}
 
+void Bestiole::setVitesse(float vit){
+   vitesse = vit;
+}
+
+int Bestiole::getX(){
+   return x;
+}
+
+void Bestiole::setX(int X){
+   x= X;
+}
+
+int Bestiole::getY(){
+   return y;
+}
+
+void Bestiole::setY(int Y){
+   y=Y;
+}
+
+vector<Bestiole*> Bestiole::getBestiolesVoisines(){
+   return bestiolesVoisines;
+}
+
+void Bestiole::setBestiolesVoisines(vector<Bestiole*> bV){
+   bestiolesVoisines = bV;
+}
+
+T* Bestiole::getCouleur(){
+   return couleur;
+}
+
+void Bestiole::setCouleur(T* coul){
+   couleur = coul;
+}
+
+float Bestiole::getTaille(){
+   return taille;
+}
+
+void Bestiole::setTaille(float t){
+   taille = t;
+}
+
+int Bestiole::getDateDeces(){
+   return dateDeces;
+}
+
+void Bestiole::setDateDeces(int date){
+   dateDeces = date;
+}
+
+float Bestiole::getProbabiliteClonage(){
+   return probabiliteClonage;
+}
+
+void Bestiole::setProbabiliteClonage(float p){
+   probabiliteClonage= p;
+}
+
+float Bestiole::getProbabiliteDecesCollision(){
+   return probabiliteDecesCollision;
+}
+
+void Bestiole::setProbabiliteDecesCollision(float p){
+   probabiliteDecesCollision = p;
+}
+
+float Bestiole::getNageoire(){
+   return nageoire;
+}
+
+void Bestiole::changerNageoire(float n){
+   nageoire = n;
+}
+
+float Bestiole::getCamouflage(){
+   return camouflage;
+}
+
+void Bestiole::changerCamouflage(float c){
+   camouflage = c;
+}
+
+float Bestiole::getCarapace(){
+   return carapace;
+}
+
+void Bestiole::changerCarapace(float c){
+   carapace = c;
 }
