@@ -37,9 +37,8 @@ private :
    //Caractéristiques "spatiales" (modifié au cours de la simulation)
    float direction;
    float vitesse;
-   tuple<int, int> position;
-   int x = get<0>(position);
-   int y = get<1>(position);
+   int x;
+   int y;
    vector<Bestiole*> bestiolesVoisines;
    double cumulX = 0;
    double cumulY = 0;

@@ -146,14 +146,6 @@ void Bestiole::setVitesse(float vit){
    vitesse = vit;
 }
 
-tuple<int, int> Bestiole::getPosition(){
-   return position;
-}
-
-void Bestiole::setPosition(tuple<int, int> pos){
-   position = pos;
-}
-
 int Bestiole::getX(){
    return x;
 }
