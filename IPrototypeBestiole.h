@@ -9,4 +9,4 @@ class IPrototypeBestiole
     virtual IPrototypeBestiole* clone() = 0;
 };
 
-#endif _PROTOTYPE_BEST_H_
+#endif
