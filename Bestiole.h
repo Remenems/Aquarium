@@ -67,21 +67,20 @@ public :
 
    void action(Milieu& monMilieu);
 
-   #pragma region accesseurs
    // accesseurs des accessoires
    void changerNageoire(float coefficient);
    void changerCamouflage(float coefficient);
    void changerCarapace(float coefficient);
 
-   float getNageoire();
-   float getCamouflage();
-   float getCarapace();
+   float getNageoire() const;
+   float getCamouflage() const;
+   float getCarapace() const;
 
    // accesseurs des caractéristiques physiques
-   float getTaille();
-   int getDateDeces();
-   float getProbabiliteDecesCollision();
-   float getProbabiliteClonage();
+   float getTaille() const;
+   int getDateDeces() const;
+   float getProbabiliteDecesCollision() const;
+   float getProbabiliteClonage() const;
 
    void setTaille(float taille);
    void setDateDeces(int dateDeces);
@@ -89,12 +88,12 @@ public :
    void setProbabiliteClonage(float p);
 
    //accesseurs des caractéristiques spatiales 
-   float getDirection();
-   float getVitesse();
-   tuple<int, int> getPosition();
-   int getX();
-   int getY();
-   vector<Bestiole*> getBestiolesVoisines();
+   float getDirection() const;
+   float getVitesse() const;
+   tuple<int, int> getPosition() const;
+   int getX() const;
+   int getY() const;
+   vector<Bestiole*> getBestiolesVoisines() const;
 
    void setDirection(float direction);
    void setVitesse(float vitesse);
@@ -104,10 +103,9 @@ public :
    void setBestiolesVoisines(vector<Bestiole*> bV);
 
    //accesseurs des caractériques visuelles
-   T* getCouleur();
+   T* getCouleur() const;
    void setCouleur(T* couleur);
 
-   #pragma endregion accesseurs
 };
 
 

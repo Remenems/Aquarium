@@ -131,7 +131,7 @@ float Bestiole::distanceEntreBestioles(Bestiole& b){
 //accesseurs
 #pragma region accesseurs
 
-float Bestiole::getDirection(){
+float Bestiole::getDirection() const{
    return direction;
 }
 
@@ -139,7 +139,7 @@ void Bestiole::setDirection(float dir){
    direction = dir;
 }
 
-float Bestiole::getVitesse(){
+float Bestiole::getVitesse() const{
    return vitesse;
 }
 
@@ -147,7 +147,7 @@ void Bestiole::setVitesse(float vit){
    vitesse = vit;
 }
 
-int Bestiole::getX(){
+int Bestiole::getX() const{
    return x;
 }
 
@@ -155,7 +155,7 @@ void Bestiole::setX(int X){
    x= X;
 }
 
-int Bestiole::getY(){
+int Bestiole::getY() const{
    return y;
 }
 
@@ -163,7 +163,7 @@ void Bestiole::setY(int Y){
    y=Y;
 }
 
-vector<Bestiole*> Bestiole::getBestiolesVoisines(){
+vector<Bestiole*> Bestiole::getBestiolesVoisines() const{
    return bestiolesVoisines;
 }
 
@@ -171,7 +171,7 @@ void Bestiole::setBestiolesVoisines(vector<Bestiole*> bV){
    bestiolesVoisines = bV;
 }
 
-T* Bestiole::getCouleur(){
+T* Bestiole::getCouleur() const{
    return couleur;
 }
 
@@ -179,7 +179,7 @@ void Bestiole::setCouleur(T* coul){
    couleur = coul;
 }
 
-float Bestiole::getTaille(){
+float Bestiole::getTaille() const{ 
    return taille;
 }
 
@@ -187,7 +187,7 @@ void Bestiole::setTaille(float t){
    taille = t;
 }
 
-int Bestiole::getDateDeces(){
+int Bestiole::getDateDeces() const{
    return dateDeces;
 }
 
@@ -195,7 +195,7 @@ void Bestiole::setDateDeces(int date){
    dateDeces = date;
 }
 
-float Bestiole::getProbabiliteClonage(){
+float Bestiole::getProbabiliteClonage() const{
    return probabiliteClonage;
 }
 
@@ -203,7 +203,7 @@ void Bestiole::setProbabiliteClonage(float p){
    probabiliteClonage= p;
 }
 
-float Bestiole::getProbabiliteDecesCollision(){
+float Bestiole::getProbabiliteDecesCollision() const{
    return probabiliteDecesCollision;
 }
 
@@ -211,7 +211,7 @@ void Bestiole::setProbabiliteDecesCollision(float p){
    probabiliteDecesCollision = p;
 }
 
-float Bestiole::getNageoire(){
+float Bestiole::getNageoire() const{
    return nageoire;
 }
 
@@ -219,7 +219,7 @@ void Bestiole::changerNageoire(float n){
    nageoire = n;
 }
 
-float Bestiole::getCamouflage(){
+float Bestiole::getCamouflage() const{
    return camouflage;
 }
 
@@ -227,7 +227,7 @@ void Bestiole::changerCamouflage(float c){
    camouflage = c;
 }
 
-float Bestiole::getCarapace(){
+float Bestiole::getCarapace() const{
    return carapace;
 }
 

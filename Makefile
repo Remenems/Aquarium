@@ -1,6 +1,7 @@
-main : main.cpp Aquarium.o Bestiole.o Milieu.o Comportements
-	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o Bestiole.o Milieu.o -I . -lX11 -lpthread
+main : main.cpp Bestiole.o Aquarium.o Milieu.o Comportements Capteurs
+	g++ -Wall -std=c++11 -o main main.cpp Bestiole.o Aquarium.o Milieu.o ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o SimpleBestiole.o -I . -lX11 -lpthread
 
+#Structure principale
 Aquarium.o : Aquarium.h Aquarium.cpp
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I .
 
@@ -28,5 +29,9 @@ ComportementPrevoyante.o : ComportementPrevoyante.cpp ComportementPrevoyante.h I
 ComportementMultiple.o : ComportementMultiple.cpp ComportementMultiple.h IComportement.h
 	g++ -Wall -std=c++11  -c ComportementMultiple.cpp -I .
 
+#Capteurs
+Capteurs : SimpleBestiole.o
 
+SimpleBestiole.o : SimpleBestiole.cpp SimpleBestiole.h Bestiole.o
+	g++ -Wall -std=c++11  -c SimpleBestiole.cpp -I .
 
