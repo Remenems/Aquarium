@@ -1,4 +1,4 @@
-main : main.cpp Comportements Bestiole.o Capteurs Aquarium.o Milieu.o
+main : main.cpp Comportements Capteurs Aquarium.o Bestiole.o Milieu.o 
 	g++ -Wall -std=c++11 -o main main.cpp Bestiole.o Aquarium.o Milieu.o ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o SimpleBestiole.o -I . -lX11 -lpthread
 
 #Structure principale

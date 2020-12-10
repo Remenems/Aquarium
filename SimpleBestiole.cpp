@@ -27,26 +27,3 @@ bool SimpleBestiole::aiJeCeCapteur(string capteur)
 {
     return false;
 }
-
-//fct modulo
-
-float modulo(float x, float y) //y>0
-{
-    if(x>=0)
-    {
-        if(x>=y)
-        {
-            return modulo(x-y, y);
-        }
-        else
-        {
-            return x;
-        }
-        
-    }
-    else
-    {
-        return modulo(x+y,y);
-    }
-    
-}

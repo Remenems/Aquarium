@@ -10,7 +10,7 @@ tuple<float,float> ComportementPeureuse::calculDirection(vector<Bestiole*> voisi
     {
         //La bestiole change de direction, va dans la direction opposée aux bestioles voisines, à une vitesse x2
         float moyenneDirection = 0;
-        for(int i = 0; i<voisins.size(); i++)
+        for(long unsigned int i = 0; i<voisins.size(); i++)
         {
             moyenneDirection += voisins.at(i)->getDirection() / voisins.size();
         }

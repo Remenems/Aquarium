@@ -16,6 +16,7 @@ using namespace std;
 
 
 class Milieu;
+class IComportement;
 
 
 class Bestiole : public IPrototypeBestiole

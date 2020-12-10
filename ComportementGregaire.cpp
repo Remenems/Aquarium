@@ -17,7 +17,7 @@ tuple<float,float> ComportementGregaire::calculDirection(vector<Bestiole*> voisi
         float sommeDirect = 0;
         float sommeVitess = 0;
 
-        for(int i = 0; i<voisins.size(); i++)
+        for(long unsigned int i = 0; i<voisins.size(); i++)
         {
             sommeDirect += (voisins.at(i)->getDirection() * voisins.at(i)->getVitesse());
             sommeVitess += voisins.at(i)->getVitesse();

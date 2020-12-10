@@ -9,11 +9,11 @@ using namespace std;
 
 class IComportement
 {
+    protected:
+        Bestiole& bestioleAssociee;
     public:
         IComportement(Bestiole& bestioleAss) : bestioleAssociee(bestioleAss){};
         virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
-    protected:
-        Bestiole& bestioleAssociee;
 };
 
 #endif
