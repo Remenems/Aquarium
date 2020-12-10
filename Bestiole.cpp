@@ -107,10 +107,6 @@ bool Bestiole::mourrirSiCollision()
    return (p < probabiliteDecesCollision);
 }
 
-bool Bestiole::aiJeCeCapteur(string capteur){
-   return false; //à modifier
-}
-
 void Bestiole::draw( UImg & support )
 {
 

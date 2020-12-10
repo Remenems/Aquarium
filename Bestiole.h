@@ -59,7 +59,7 @@ public :
 
    bool mourrirSiCollision();
    virtual vector<Bestiole*> detecter() = 0;
-   bool aiJeCeCapteur(string capteur);
+   bool aiJeCeCapteur(string capteur) = 0;
 
    void draw(UImg & support);
    void repositionnerBestiole(int xLim, int yLim);
