@@ -53,20 +53,20 @@ Bestiole::~Bestiole( void )
 
 }
 
-
+*/
 void Bestiole::initCoords( int xLim, int yLim )
 {
 
    x = rand() % xLim;
    y = rand() % yLim;
 
-}*/
+}
 
 
 void Bestiole::repositionnerBestiole( int xLim, int yLim )
 {
 
-   tuple<float, float> coupleDirectionVitesse = make_tuple(0, 0);//comportement.calculDirection();
+   tuple<float, float> coupleDirectionVitesse = comportement.calculDirection(detecter());//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
    float vitessePourCeTour = vitesse*get<1>(coupleDirectionVitesse);
 
@@ -129,6 +129,7 @@ float Bestiole::distanceEntreBestioles(Bestiole& b){
 }
 
 //accesseurs
+#pragma region accesseurs
 
 float Bestiole::getDirection(){
    return direction;
@@ -232,4 +233,13 @@ float Bestiole::getCarapace(){
 
 void Bestiole::changerCarapace(float c){
    carapace = c;
+}
+
+#pragma endregion accesseurs
+
+void Bestiole::action( Milieu & monMilieu )
+{
+
+   repositionnerBestiole( monMilieu.getWidth(), monMilieu.getHeight() );
+
 }

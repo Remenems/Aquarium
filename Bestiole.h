@@ -8,6 +8,8 @@
 #include <string>
 #include <tuple>
 
+#include "IComportement.h"
+
 #include <iostream>
 
 using namespace std;
@@ -32,7 +34,7 @@ private :
    int dateDeces;
    float probabiliteDecesCollision;
    float probabiliteClonage;
-   //IComportement& comportement;
+   IComportement& comportement;
 
    //Caractéristiques "spatiales" (modifié au cours de la simulation)
    float direction;
@@ -53,6 +55,8 @@ public :
 
    Bestiole* clone() = 0;
 
+   void initCoords( int xLim, int yLim );
+
    bool mourrirSiCollision();
    virtual vector<Bestiole*> detecter() = 0;
    bool aiJeCeCapteur(string capteur);
@@ -61,6 +65,9 @@ public :
    void repositionnerBestiole(int xLim, int yLim);
    float distanceEntreBestioles(Bestiole& b);
 
+   void action(Milieu& monMilieu);
+
+   #pragma region accesseurs
    // accesseurs des accessoires
    void changerNageoire(float coefficient);
    void changerCamouflage(float coefficient);
@@ -99,6 +106,8 @@ public :
    //accesseurs des caractériques visuelles
    T* getCouleur();
    void setCouleur(T* couleur);
+
+   #pragma endregion accesseurs
 };
 
 

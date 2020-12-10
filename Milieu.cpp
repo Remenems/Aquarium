@@ -28,7 +28,7 @@ Milieu::~Milieu( void )
 
 void Milieu::step( void )
 {
-
+   clock++;
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
@@ -41,7 +41,7 @@ void Milieu::step( void )
 }
 
 
-int Milieu::nbVoisins( const Bestiole & b )
+/*int Milieu::nbVoisins( const Bestiole & b )
 {
 
    int         nb = 0;
@@ -53,4 +53,4 @@ int Milieu::nbVoisins( const Bestiole & b )
 
    return nb;
 
-}
+}*/
