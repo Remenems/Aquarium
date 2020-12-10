@@ -6,41 +6,39 @@
 #include <cmath>
 #include <tuple>
 
-/*Bestiole::Bestiole( void )
+Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit, T* coul)
 {
-
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par defaut" << endl;
-
-   x = y = 0;
-   cumulX = cumulY = 0.;
-   orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
-   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
-
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
+   x = 0;
+   y = 0; // à changer
+   camouflage = cam;
+   carapace = car;
+   nageoire = nag;
+   taille = tai;
+   dateDeces = daDeces;
+   probabiliteDecesCollision = probaDecesCollision;
+   probabiliteClonage = probaClonage;
+   direction = dir;
+   vitesse = vit;
+   couleur = coul;
+   //TODO intiialiser le comportement
 }
 
 
 Bestiole::Bestiole( const Bestiole & b )
 {
-
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par copie" << endl;
-
-   x = b.x;
-   y = b.y;
-   cumulX = cumulY = 0.;
-   orientation = b.orientation;
-   vitesse = b.vitesse;
-   couleur = new T[ 3 ];
-   memcpy( couleur, b.couleur, 3*sizeof(T) );
-
+   x = b.getX();
+   y = b.getY();
+   camouflage = b.getCamouflage();
+   carapace = b.getCarapace();
+   nageoire = b.getNageoire();
+   taille = b.getTaille();
+   dateDeces = b.getDateDeces();
+   probabiliteDecesCollision = b.getProbabiliteDecesCollision();
+   probabiliteClonage = b.getProbabiliteClonage();
+   direction = b.getDirection();
+   vitesse = b.getVitesse();
+   couleur = b.getCouleur();
+   //TODO initialiser le comportement
 }
 
 
@@ -53,7 +51,7 @@ Bestiole::~Bestiole( void )
 
 }
 
-*/
+
 void Bestiole::initCoords( int xLim, int yLim )
 {
 
@@ -65,8 +63,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 void Bestiole::repositionnerBestiole( int xLim, int yLim )
 {
-
-   tuple<float, float> coupleDirectionVitesse = comportement.calculDirection(detecter());//comportement.calculDirection();
+   tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(detecter());//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
    float vitessePourCeTour = vitesse*get<1>(coupleDirectionVitesse);
 

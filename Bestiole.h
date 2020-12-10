@@ -34,7 +34,7 @@ private :
    int dateDeces;
    float probabiliteDecesCollision;
    float probabiliteClonage;
-   IComportement& comportement;
+   IComportement* comportement;
 
    //Caractéristiques "spatiales" (modifié au cours de la simulation)
    float direction;
@@ -46,12 +46,15 @@ private :
    double cumulY = 0;
 
    //caractéristiques visuelles
-   T               * couleur;
+   T * couleur;
 
 //méthodes
 public :
 
    //void changerComportement(IComportement*);
+
+   Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur);
+   Bestiole(const Bestiole& bestiole);
 
    Bestiole* clone() = 0;
 
@@ -59,7 +62,7 @@ public :
 
    bool mourrirSiCollision();
    virtual vector<Bestiole*> detecter() = 0;
-   bool aiJeCeCapteur(string capteur) = 0;
+   virtual bool aiJeCeCapteur(string capteur) = 0;
 
    void draw(UImg & support);
    void repositionnerBestiole(int xLim, int yLim);
