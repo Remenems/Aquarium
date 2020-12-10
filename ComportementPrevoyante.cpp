@@ -8,5 +8,5 @@ tuple<float,float> ComportementPrevoyante::calculDirection(vector<Bestiole*> voi
 {
     //TODO Implémentation de caculDirection
     //Evite les trajectoires ???
-    return make_tuple(0,0);
+    return make_tuple(bestioleAssociee.getDirection(),1);
 }

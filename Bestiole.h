@@ -55,6 +55,7 @@ public :
 
    Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur);
    Bestiole(const Bestiole& bestiole);
+   ~Bestiole( void );
 
    Bestiole* clone() = 0;
 

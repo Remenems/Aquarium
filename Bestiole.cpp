@@ -46,6 +46,7 @@ Bestiole::~Bestiole( void )
 {
 
    delete[] couleur;
+   delete comportement;
 
    cout << "dest Bestiole" << endl;
 
