@@ -11,7 +11,7 @@ class SimpleBestiole : public Bestiole
         SimpleBestiole(const Bestiole& bestiole);
         Bestiole* clone();
         vector<Bestiole*> detecter();
-        bool aiJeCeCapteur(string capteur);
+        bool aiJeCeCapteur(CapteurType type);
 
 };
 

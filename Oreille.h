@@ -9,7 +9,7 @@ class Oreille
     public:
         Bestiole* clone();
         vector<Bestiole*> detecter();
-        bool aiJeCeCapteur(string capteur);
+        bool aiJeCeCapteur(CapteurType type);
 };
 
 

@@ -23,7 +23,7 @@ vector<Bestiole*> SimpleBestiole::detecter()
     return vector<Bestiole*>();
 }
 
-bool SimpleBestiole::aiJeCeCapteur(string capteur)
+bool SimpleBestiole::aiJeCeCapteur(CapteurType type)
 {
     return false;
 }
