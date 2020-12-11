@@ -7,6 +7,7 @@
 #include "Clones.h"
 #include <iostream>
 #include <vector>
+#include "SimpleBestiole.h"
 
 using namespace std;
 
@@ -45,7 +46,7 @@ public :
    void ajouterYeux(std::vector<Bestiole> listeBestioles);
    void ajouterOreilles(std::vector<Bestiole> listeBestioles);
    void afficherBestiole();
-   void tuerBestiole();
+   void tuerBestiole(Bestiole& bestiole);
    void ajouterBestiole(int nombre);
 };
 
