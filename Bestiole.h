@@ -53,17 +53,20 @@ private :
 public :
 
    //void changerComportement(IComportement*);
-
-   Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur);
-   Bestiole(const Bestiole& bestiole);
+   Bestiole();
+   Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
+   Bestiole(const Bestiole& bestiole, int x, int y);
    ~Bestiole( void );
 
-   Bestiole* clone() = 0;
+   virtual Bestiole* clone(int x, int y) = 0; // clone la bestiole et la positionne à la position (x,y)
 
    void initCoords( int xLim, int yLim );
 
    bool mourrirSiCollision();
-   virtual vector<Bestiole*> detecter() = 0;
+
+   virtual vector<tuple<float,float>> detecter() = 0;
+   virtual bool aiJeCeCapteur(CapteurType type) = 0;
+
 
    void draw(UImg & support);
    void repositionnerBestiole(int xLim, int yLim);
@@ -114,7 +117,7 @@ public :
 
 enum CapteurType
 {
-   Yeux,
+   Oeil,
    Oreilles,
 }
 

@@ -1,8 +1,11 @@
 #include "SimpleBestiole.h"
 
+SimpleBestiole::SimpleBestiole() : Bestiole()
+{}
+
 
 SimpleBestiole::SimpleBestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur)
-: Bestiole(camouflage,carapace,nageoire,taille,dateDeces,probabiliteDecesCollision,probabiliteClonage,comportement,direction,vitesse,couleur)
+: Bestiole(camouflage,carapace,nageoire,taille,dateDeces,probabiliteDecesCollision,probabiliteClonage,comportement,direction,vitesse)
 {
     
 }
@@ -13,14 +16,14 @@ SimpleBestiole::SimpleBestiole(const Bestiole& bestiole)
     
 }
 
-Bestiole* SimpleBestiole::clone()
+Bestiole* SimpleBestiole::clone(int x, int y)
 {
-    return &SimpleBestiole(*this);
+    return new SimpleBestiole(*this);
 }
 
-vector<Bestiole*> SimpleBestiole::detecter()
+vector<tuple<float,float>> SimpleBestiole::detecter()
 {
-    return vector<Bestiole*>();
+    return vector<tuple<float,float>>();
 }
 
 bool SimpleBestiole::aiJeCeCapteur(CapteurType type)
