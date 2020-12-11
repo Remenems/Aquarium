@@ -134,7 +134,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 }
 
 
-void Bestiole::repositionnerBestiole( int xLim, int yLim )
+void Bestiole::actualiserPosition( int xLim, int yLim )
 {
    tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(bestiolesVoisines, *this);//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
@@ -299,13 +299,6 @@ float Bestiole::getCarapace() const{
 
 void Bestiole::changerCarapace(float c){
    carapace = c;
-}
-
-void Bestiole::action( Milieu & monMilieu )
-{
-
-   repositionnerBestiole( monMilieu.getWidth(), monMilieu.getHeight() );
-
 }
 
  // modulo
