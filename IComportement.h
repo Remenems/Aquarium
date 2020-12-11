@@ -5,6 +5,12 @@
 #include <vector>
 #include "Bestiole.h"
 
+#include "ComportementGregaire.h"
+#include "ComportementPeureuse.h"
+#include "ComportementKamikaze.h"
+#include "ComportementPrevoyante.h"
+#include "ComportementMultiple.h"
+
 using namespace std;
 
 class IComportement

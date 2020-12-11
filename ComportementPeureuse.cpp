@@ -6,7 +6,7 @@ using namespace std;
 
 tuple<float,float> ComportementPeureuse::calculDirection(vector<Bestiole*> voisins)
 {
-    if(voisins.size() >= ComportementPeureuse::seuilAvantPeur)
+    if(voisins.size() >= static_cast<long unsigned int>(ComportementPeureuse::seuilAvantPeur))
     {
         //La bestiole change de direction, va dans la direction opposée aux bestioles voisines, à une vitesse x2
         float moyenneDirection = 0;
