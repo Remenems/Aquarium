@@ -37,9 +37,34 @@ Bestiole::Bestiole()
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
    bestiolesVoisines = vector<Bestiole*>();
+   int choix = rand() % 5;
+   switch (choix)
+   {
+   case 0:
+      comportement = new ComportementPeureuse();
+      break;
+   
+   case 1:
+      comportement = new ComportementPrevoyante();
+      break;
+
+   case 2:
+      comportement = new ComportementKamikaze();
+      break;
+
+   case 3:
+      comportement = new ComportementGregaire();
+      break;
+
+   case 4:   
+   default:
+      comportement = new ComportementMultiple();
+      break;
+   }
+
 }
 
-Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit)
+Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement* comport, float dir, float vit)
 {
    x = 0;
    y = 0;
@@ -64,7 +89,7 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
-   comportement = &comport;
+   comportement = comport;
 }
 
 

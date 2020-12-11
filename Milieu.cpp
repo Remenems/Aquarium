@@ -6,6 +6,8 @@
 #include "Clones.h"
 #include <tuple>
 
+#include <iostream>
+
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
 Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
@@ -22,7 +24,11 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 
 Milieu::~Milieu( void )
 {
-
+   int s = bestioles.size();
+   for(int i =0; i<s;i++)
+   {
+      delete bestioles.at(i);
+   }
    cout << "dest Milieu" << endl;
 
 }
@@ -89,20 +95,22 @@ void Milieu::verifierCollision()
 
 void Milieu::repositionnerBestioles()
 {
-   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   for (long unsigned int i =0; i< bestioles.size(); i++)
    {
-      it -> actualiserPosition(width, height);
+      bestioles.at(i) -> actualiserPosition(width, height);
    }
 }
 
 void Milieu::actualiserVoisines()
 {
-   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   //vector<tuple<float,float>> res = vector<tuple<float,float>>();
+   for (long unsigned int i =0 ; i<bestioles.size();i++)
    {
-      vector<std::tuple<float,float>> res = it -> detecter();
-      std::vector<Bestiole> voisines = std::vector<Bestiole>();
-      for
+      //res = bestioles.at(i) -> detecter();      
+      std::vector<Bestiole*> voisines = std::vector<Bestiole*>();
+      bestioles.at(i)->setBestiolesVoisines(voisines);
    }
+   //TODO
 }
 
 void Milieu::step( void )
@@ -112,8 +120,17 @@ void Milieu::step( void )
    for (long unsigned int i = 0 ; i<bestioles.size(); i++)
    {
       bestioles.at(i)->draw( *this );
-   } // for
+      bestioles.at(i)->actualiserPosition(width,height);
+   }
 
+}
+
+void Milieu::ajouterBestioles(int nombre)
+{
+   for(int i=0;i<nombre;i++)
+   {
+      bestioles.push_back(new SimpleBestiole());
+   }
 }
 
 

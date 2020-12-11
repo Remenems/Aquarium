@@ -16,6 +16,7 @@ class Clones
 
     public :
         Clones();
+        ~Clones();
 
         Bestiole* getGregaire() const;
         Bestiole* getPeureuse() const;

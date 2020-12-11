@@ -47,7 +47,7 @@ public :
    void ajouterOreilles(std::vector<Bestiole*> listeBestioles);
    void afficherBestiole();
    void tuerBestiole(Bestiole* bestiole);
-   void ajouterBestiole(int nombre);
+   void ajouterBestioles(int nombre);
 };
 
 

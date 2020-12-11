@@ -59,7 +59,7 @@ public :
 
    //void changerComportement(IComportement*);
    Bestiole();
-   Bestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
+   Bestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement* comportement, float direction, float vitesse);
    Bestiole(const Bestiole& bestiole, int x, int y);
    virtual ~Bestiole( void );
 

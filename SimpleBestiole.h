@@ -8,7 +8,7 @@ class SimpleBestiole : public Bestiole
 {
     public:
         SimpleBestiole( void );
-        SimpleBestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur);
+        SimpleBestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement* comportement, float direction, float vitesse);
         SimpleBestiole(const Bestiole& bestiole);
         Bestiole* clone(int x, int y);
         vector<tuple<float,float>> detecter();
