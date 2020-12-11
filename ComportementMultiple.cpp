@@ -25,9 +25,9 @@ ComportementMultiple::~ComportementMultiple()
     int s = comportements.size();
     for(int i = 0; i<s;i++)
     {
-        delete[] comportements.at(0);
+        delete comportements.at(i);
     }
-    delete comportementActif;
+    //comportementActif est déjà détruit
 }
 
 

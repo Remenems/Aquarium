@@ -55,7 +55,7 @@ void Milieu::verifierAgeBestiole()
 {
    for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
    {
-      if (it -> getAgeDeces() = 0){
+      if (it -> getAgeDeces() <= 0){
          tuerBestiole(*it);
       }
    }

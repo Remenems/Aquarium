@@ -35,6 +35,8 @@ Bestiole::Bestiole()
 
    direction = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+
+   bestiolesVoisines = vector<Bestiole*>();
 }
 
 Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit)
@@ -51,6 +53,8 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float
    ageDeces = aDeces;
    probabiliteDecesCollision = probaDecesCollision;
    probabiliteClonage = probaClonage;
+
+   bestiolesVoisines = vector<Bestiole*>();
 
    direction = dir;
    vitesse = vit;
@@ -77,12 +81,15 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
    probabiliteClonage = b.getProbabiliteClonage();
    direction = modulo(b.getDirection() + M_PI, 2 * M_PI); // va dans la direction opposée à la bestiole passée en paramètre
    vitesse = b.getVitesse();
+   bestiolesVoisines = vector<Bestiole*>();
 
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
 
+   bestiolesVoisines = vector<Bestiole*>();
+
    //TODO initialiser le comportement de la bonne manière (même que celui de la bestiole originale)
-   comportement = new ComportementGregaire();
+   comportement = b.comportement;
 }
 
 

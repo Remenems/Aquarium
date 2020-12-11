@@ -3,9 +3,9 @@
 
 
 #include "UImg.h"
-#include <vector>
+//#include <vector>
 #include "IPrototypeBestiole.h"
-#include <string>
+//#include <string>
 #include <tuple>
 
 #include "IComportement.h"
