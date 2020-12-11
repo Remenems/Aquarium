@@ -3,9 +3,9 @@
 
 
 #include "UImg.h"
-#include <vector>
+//#include <vector>
 #include "IPrototypeBestiole.h"
-#include <string>
+//#include <string>
 #include <tuple>
 
 #include "IComportement.h"
@@ -18,6 +18,11 @@ using namespace std;
 class Milieu;
 class IComportement;
 
+enum CapteurType
+{
+   Oeil,
+   Oreilles,
+};
 
 class Bestiole : public IPrototypeBestiole
 {
@@ -32,7 +37,7 @@ private :
 
    //Caractéristiques "physiques" (non modifiafle sauf intervention extérieur)
    float taille;
-   int dateDeces;
+   int ageDeces;
    float probabiliteDecesCollision;
    float probabiliteClonage;
    IComportement* comportement;
@@ -54,9 +59,9 @@ public :
 
    //void changerComportement(IComportement*);
    Bestiole();
-   Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
+   Bestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
    Bestiole(const Bestiole& bestiole, int x, int y);
-   ~Bestiole( void );
+   virtual ~Bestiole( void );
 
    virtual Bestiole* clone(int x, int y) = 0; // clone la bestiole et la positionne à la position (x,y)
 
@@ -83,12 +88,12 @@ public :
 
    // accesseurs des caractéristiques physiques
    float getTaille() const;
-   int getDateDeces() const;
+   int getAgeDeces() const;
    float getProbabiliteDecesCollision() const;
    float getProbabiliteClonage() const;
 
    void setTaille(float taille);
-   void setDateDeces(int dateDeces);
+   void setAgeDeces(int AgeDeces);
    void setProbabiliteDecesCollision(float p);
    void setProbabiliteClonage(float p);
 
@@ -112,12 +117,6 @@ public :
    void setCouleur(T* couleur);
 
 };
-
-enum CapteurType
-{
-   Oeil,
-   Oreilles,
-}
 
 
 #endif

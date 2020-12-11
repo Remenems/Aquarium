@@ -19,7 +19,7 @@ private :
    static const T          white[];
    Clones clones;
    int                     width, height;
-   std::vector<Bestiole>   bestioles;
+   std::vector<Bestiole*>   bestioles;
 
    //Timer: échelle de temps, est incrémenté à chaque step
    int clock;
@@ -32,21 +32,21 @@ public :
    int getHeight( void ) const { return height; };
 
    void step( void );
-   void clonerBestiole(std::vector<Bestiole> listeBestioles);
+   void clonerBestiole(std::vector<Bestiole*> listeBestioles);
    void verifierSiClonage();
    void verifierAgeBestiole();
    void verifierCollision();
    void repositionnerBestioles();
    void actualiserVoisines();
    void initialisation(int nombre, std::vector<float> pourcentageComportement);
-   void ajouterCarapace(std::vector<Bestiole> listeBestioles);
-   void ajouterNageoire(std::vector<Bestiole> listeBestioles);
-   void ajouterCamouflage(std::vector<Bestiole> listeBestioles);
-   void changerComportement(IComportement* comportement, std::vector<Bestiole> listeBestioles);
-   void ajouterYeux(std::vector<Bestiole> listeBestioles);
-   void ajouterOreilles(std::vector<Bestiole> listeBestioles);
+   void ajouterCarapace(std::vector<Bestiole*> listeBestioles);
+   void ajouterNageoire(std::vector<Bestiole*> listeBestioles);
+   void ajouterCamouflage(std::vector<Bestiole*> listeBestioles);
+   void changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles);
+   void ajouterYeux(std::vector<Bestiole*> listeBestioles);
+   void ajouterOreilles(std::vector<Bestiole*> listeBestioles);
    void afficherBestiole();
-   void tuerBestiole(Bestiole& bestiole);
+   void tuerBestiole(Bestiole* bestiole);
    void ajouterBestiole(int nombre);
 };
 

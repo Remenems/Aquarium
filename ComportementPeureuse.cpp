@@ -4,7 +4,7 @@
 
 using namespace std;
 
-tuple<float,float> ComportementPeureuse::calculDirection(vector<Bestiole*> voisins)
+tuple<float,float> ComportementPeureuse::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     if(voisins.size() >= static_cast<long unsigned int>(ComportementPeureuse::seuilAvantPeur))
     {

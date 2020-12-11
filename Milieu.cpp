@@ -15,7 +15,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
    cout << "const Milieu" << endl;
    Clones clones = Clones();
    std::srand( time(NULL) );
-   bestioles = std::vector<Bestiole>();
+   bestioles = std::vector<Bestiole*>();
    clock = 0;
 }
 
@@ -27,26 +27,26 @@ Milieu::~Milieu( void )
 
 }
 
-void Milieu::clonerBestiole(std::vector<Bestiole> listeBestioles)
+void Milieu::clonerBestiole(std::vector<Bestiole*> listeBestioles)
 {
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   for (long unsigned int i = 0; i<listeBestioles.size();i++)
    {
       int x = static_cast<int>(static_cast<float>( std::rand() )/RAND_MAX*width);
       int y = static_cast<int>(static_cast<float>( std::rand() )/RAND_MAX*height);
-      Bestiole* nouvelleBestiole = it -> clone(x, y);
-      bestioles.push_back(*nouvelleBestiole);
+      Bestiole* nouvelleBestiole = listeBestioles.at(i) -> clone(x, y);
+      bestioles.push_back(nouvelleBestiole);
    }
 }
 
 void Milieu::verifierSiClonage(){
-   std::vector<Bestiole> bestiolesClones = std::vector<Bestiole>();
-   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   std::vector<Bestiole*> bestiolesClones = std::vector<Bestiole*>();
+   for (long unsigned int i =0; i< bestioles.size(); i++)
    {
-      float p = it -> getProbabiliteClonage();
+      float p = bestioles.at(i) -> getProbabiliteClonage();
       float p2 = static_cast<float>( std::rand() )/RAND_MAX;
       if (p > p2)
       {
-         bestiolesClones.push_back(*it);
+         bestiolesClones.push_back(bestioles.at(i));
       }
    }
    clonerBestiole(bestiolesClones);
@@ -54,10 +54,10 @@ void Milieu::verifierSiClonage(){
 
 void Milieu::verifierAgeBestiole()
 {
-   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   for (long unsigned int i = 0 ; i<bestioles.size(); i++)
    {
-      if (it -> getAgeDeces() <= 0){
-         tuerBestiole(*it);
+      if (bestioles.at(i) -> getAgeDeces() <= 0){
+         tuerBestiole(bestioles.at(i));
       }
    }
 }
@@ -67,19 +67,19 @@ void Milieu::verifierCollision()
    int tailleVecteur = bestioles.size();
    for (int i=0; i<=tailleVecteur-1; i=i+1)
    {
-      float taille1 = bestioles.at(i).getTaille();
+      float taille1 = bestioles.at(i) -> getTaille();
 
       for (int k = i+1; k<= tailleVecteur; k=k+1)
       {
-         float taille2 = bestioles.at(k).getTaille();
+         float taille2 = bestioles.at(k) -> getTaille();
 
-         float distance = bestioles.at(i).distanceEntreBestioles(bestioles.at(k));
+         float distance = bestioles.at(i) -> distanceEntreBestioles(*bestioles.at(k));
          if (distance < taille1 + taille2)
          {
-            if (bestioles.at(i).mourrirSiCollision()){
+            if (bestioles.at(i) -> mourrirSiCollision()){
                tuerBestiole(bestioles.at(i));
             }
-            if (bestioles.at(k).mourrirSiCollision()){
+            if (bestioles.at(k) -> mourrirSiCollision()){
                tuerBestiole(bestioles.at(k));
             }
          } 
@@ -109,11 +109,9 @@ void Milieu::step( void )
 {
    clock++;
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   for (long unsigned int i = 0 ; i<bestioles.size(); i++)
    {
-
-      it->draw( *this );
-
+      bestioles.at(i)->draw( *this );
    } // for
 
 }

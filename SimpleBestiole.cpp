@@ -4,8 +4,8 @@ SimpleBestiole::SimpleBestiole() : Bestiole()
 {}
 
 
-SimpleBestiole::SimpleBestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur)
-: Bestiole(camouflage,carapace,nageoire,taille,dateDeces,probabiliteDecesCollision,probabiliteClonage,comportement,direction,vitesse)
+SimpleBestiole::SimpleBestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur)
+: Bestiole(camouflage,carapace,nageoire,taille,ageDeces,probabiliteDecesCollision,probabiliteClonage,comportement,direction,vitesse)
 {
     
 }
