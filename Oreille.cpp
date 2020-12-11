@@ -6,9 +6,10 @@ Oreille::Oreille(Bestiole* bestiole, float distance) : CapteurDecorator(bestiole
     distanceOuie = distance;
 }
         
-Bestiole* Oreille::clone()
+Bestiole* Oreille::clone(int x, int y)
 {
-    //TODO clone pour les oreilles
+    Bestiole* bClone = bestioleDecoreePtr->clone(x,y);
+    return new Oreille(bClone, distanceOuie);
 }
 
 vector<tuple<float,float>> Oreille::detecter()

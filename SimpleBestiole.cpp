@@ -16,9 +16,9 @@ SimpleBestiole::SimpleBestiole(const Bestiole& bestiole)
     
 }
 
-Bestiole* SimpleBestiole::clone()
+Bestiole* SimpleBestiole::clone(int x, int y)
 {
-    return &SimpleBestiole(*this);
+    return new SimpleBestiole(*this);
 }
 
 vector<tuple<float,float>> SimpleBestiole::detecter()

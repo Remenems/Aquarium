@@ -55,10 +55,10 @@ public :
    //void changerComportement(IComportement*);
    Bestiole();
    Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
-   Bestiole(const Bestiole& bestiole);
+   Bestiole(const Bestiole& bestiole, int x, int y);
    ~Bestiole( void );
 
-   Bestiole* clone() = 0;
+   virtual Bestiole* clone(int x, int y) = 0; // clone la bestiole et la positionne à la position (x,y)
 
    void initCoords( int xLim, int yLim );
 

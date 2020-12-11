@@ -56,10 +56,10 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, floa
 }
 
 
-Bestiole::Bestiole( const Bestiole & b )
+Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
 {
-   x = b.getX();
-   y = b.getY();
+   x = newx;
+   y = newy;
    camouflage = b.getCamouflage();
    carapace = b.getCarapace();
    nageoire = b.getNageoire();

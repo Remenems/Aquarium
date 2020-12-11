@@ -6,7 +6,7 @@
 class IPrototypeBestiole
 {
     public:
-    virtual IPrototypeBestiole* clone() = 0;
+    virtual Bestiole* clone() = 0;
 };
 
 #endif
