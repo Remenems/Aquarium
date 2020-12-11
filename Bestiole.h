@@ -63,8 +63,10 @@ public :
    void initCoords( int xLim, int yLim );
 
    bool mourrirSiCollision();
+
    virtual vector<tuple<float,float>> detecter() = 0;
    virtual bool aiJeCeCapteur(CapteurType type) = 0;
+
 
    void draw(UImg & support);
    void repositionnerBestiole(int xLim, int yLim);

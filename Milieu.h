@@ -4,7 +4,7 @@
 
 #include "UImg.h"
 #include "Bestiole.h"
-
+#include "Clones.h"
 #include <iostream>
 #include <vector>
 
@@ -16,9 +16,9 @@ class Milieu : public UImg
 
 private :
    static const T          white[];
-
+   Clones clones;
    int                     width, height;
-   std::vector<Bestiole>   listeBestioles;
+   std::vector<Bestiole>   bestioles;
 
    //Timer: échelle de temps, est incrémenté à chaque step
    int clock;
@@ -31,10 +31,22 @@ public :
    int getHeight( void ) const { return height; };
 
    void step( void );
-
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
-   //int nbVoisins( const Bestiole & b );
-
+   void clonerBestiole(std::vector<Bestiole> listeBestioles);
+   void verifierSiClonage();
+   void verifierAgeBestiole();
+   void verifierCollision();
+   void repositionnerBestioles();
+   void actualiserVoisines();
+   void initialisation(int nombre, std::vector<float> pourcentageComportement);
+   void ajouterCarapace(std::vector<Bestiole> listeBestioles);
+   void ajouterNageoire(std::vector<Bestiole> listeBestioles);
+   void ajouterCamouflage(std::vector<Bestiole> listeBestioles);
+   void changerComportement(IComportement* comportement, std::vector<Bestiole> listeBestioles);
+   void ajouterYeux(std::vector<Bestiole> listeBestioles);
+   void ajouterOreilles(std::vector<Bestiole> listeBestioles);
+   void afficherBestiole();
+   void tuerBestiole();
+   void ajouterBestiole(int nombre);
 };
 
 
