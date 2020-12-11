@@ -18,7 +18,7 @@ class IComportement
     protected:
         Bestiole& bestioleAssociee;
     public:
-        IComportement(Bestiole& bestioleAss) : bestioleAssociee(bestioleAss){};
+        IComportement(Bestiole* b) { bestioleAssociee = &b; };
         virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
 };
 

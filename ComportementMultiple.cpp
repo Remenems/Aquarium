@@ -5,7 +5,7 @@
 
 using namespace std;
 
-ComportementMultiple::ComportementMultiple(Bestiole& bestioleAss) : IComportement(bestioleAss)
+ComportementMultiple::ComportementMultiple(Bestiole* bestioleAss) : IComportement(bestioleAss)
 {
     //Initialisation de la liste des comportements
     comportements = vector<IComportement>();

@@ -2,6 +2,8 @@
 
 #include "Milieu.h"
 
+#include "IComportement.h"
+
 #include <cstdlib>
 #include <cmath>
 #include <tuple>
@@ -20,7 +22,8 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, floa
    direction = dir;
    vitesse = vit;
    couleur = coul;
-   //TODO intiialiser le comportement
+   //TODO intiialiser le comportement (au hasard, donné en paramètre)
+   comportement = new ComportementGregaire(this);
 }
 
 
@@ -38,7 +41,8 @@ Bestiole::Bestiole( const Bestiole & b )
    direction = b.getDirection();
    vitesse = b.getVitesse();
    couleur = b.getCouleur();
-   //TODO initialiser le comportement
+   //TODO initialiser le comportement de la bonne manière (même que celui de la bestiole originale)
+   comportement = new ComportementGregaire(this);
 }
 
 
@@ -258,5 +262,4 @@ float modulo(float x, float y) //y>0
    {
       return modulo(x+y,y);
    }
-    
 }

@@ -15,7 +15,7 @@ using namespace std;
 class ComportementMultiple : public IComportement
 {
     public:
-        ComportementMultiple(Bestiole& bestioleAss);
+        ComportementMultiple(Bestiole* bestioleAss);
         tuple<float,float> calculDirection(vector<Bestiole*> voisins);
 
     private:
