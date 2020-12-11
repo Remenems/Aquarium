@@ -5,14 +5,14 @@
 
 using namespace std;
 
-ComportementMultiple::ComportementMultiple(Bestiole* bestioleAss) : IComportement(bestioleAss)
+ComportementMultiple::ComportementMultiple() : IComportement()
 {
     //Initialisation de la liste des comportements
     comportements = vector<IComportement>();
-    comportements.push_back(ComportementPeureuse(bestioleAss));
-    comportements.push_back(ComportementGregaire(bestioleAss));
-    comportements.push_back(ComportementPrevoyante(bestioleAss));
-    comportements.push_back(ComportementKamikaze(bestioleAss));
+    comportements.push_back(ComportementPeureuse());
+    comportements.push_back(ComportementGregaire());
+    comportements.push_back(ComportementPrevoyante());
+    comportements.push_back(ComportementKamikaze());
     //Initialisation du comportement actif
     int choix = rand() % comportements.size();
     comportementActif = &(comportements.at(choix));
@@ -21,7 +21,7 @@ ComportementMultiple::ComportementMultiple(Bestiole* bestioleAss) : IComportemen
 }
 
 
-tuple<float,float> ComportementMultiple::calculDirection(vector<Bestiole*> voisins)
+tuple<float,float> ComportementMultiple::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     //Vérifie si le temps avant changement de comportement est écoulé
     tempsAvantChangementDeComportement--;
@@ -32,5 +32,5 @@ tuple<float,float> ComportementMultiple::calculDirection(vector<Bestiole*> voisi
         tempsAvantChangementDeComportement = tempsEntreDeuxChangementsDeComportement;
     }
     //calcule la direction pour le comportement selectionné
-    return comportementActif -> calculDirection(voisins);
+    return comportementActif -> calculDirection(voisins, bestioleAssociee);
 }

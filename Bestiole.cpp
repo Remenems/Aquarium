@@ -21,7 +21,7 @@ Bestiole::Bestiole()
    carapace =  static_cast<double>( rand() )/RAND_MAX ;
    nageoire = static_cast<double>( rand() )/RAND_MAX ;
    taille = static_cast<double>( rand() )/RAND_MAX ;
-   dateDeces = rand() % 1000;
+   ageDeces = rand() % 1000;
    probabiliteDecesCollision = static_cast<double>( rand() )/RAND_MAX ;
    probabiliteClonage = static_cast<double>( rand() )/RAND_MAX ;
 
@@ -29,7 +29,7 @@ Bestiole::Bestiole()
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 }
 
-Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit)
+Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit)
 {
    x = 0;
    y = 0;
@@ -40,7 +40,7 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, floa
    carapace = car;
    nageoire = nag;
    taille = tai;
-   dateDeces = daDeces;
+   ageDeces = aDeces;
    probabiliteDecesCollision = probaDecesCollision;
    probabiliteClonage = probaClonage;
 
@@ -64,7 +64,7 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
    carapace = b.getCarapace();
    nageoire = b.getNageoire();
    taille = b.getTaille();
-   dateDeces = b.getDateDeces();
+   ageDeces = b.getAgeDeces();
    probabiliteDecesCollision = b.getProbabiliteDecesCollision();
    probabiliteClonage = b.getProbabiliteClonage();
    direction = modulo(b.getDirection() + M_PI, 2 * M_PI); // va dans la direction opposée à la bestiole passée en paramètre
@@ -74,7 +74,7 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
    memcpy( couleur, b.couleur, 3*sizeof(T) );
 
    //TODO initialiser le comportement de la bonne manière (même que celui de la bestiole originale)
-   comportement = new ComportementGregaire(this);
+   comportement = new ComportementGregaire();
 }
 
 
@@ -100,7 +100,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 void Bestiole::repositionnerBestiole( int xLim, int yLim )
 {
-   tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(bestiolesVoisines);//comportement.calculDirection();
+   tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(bestiolesVoisines, *this);//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
    float vitessePourCeTour = vitesse*get<1>(coupleDirectionVitesse);
 
@@ -217,12 +217,12 @@ void Bestiole::setTaille(float t){
    taille = t;
 }
 
-int Bestiole::getDateDeces() const{
-   return dateDeces;
+int Bestiole::getAgeDeces() const{
+   return ageDeces;
 }
 
-void Bestiole::setDateDeces(int date){
-   dateDeces = date;
+void Bestiole::setAgeDeces(int date){
+   ageDeces = date;
 }
 
 float Bestiole::getProbabiliteClonage() const{

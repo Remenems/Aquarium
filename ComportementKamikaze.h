@@ -8,8 +8,8 @@ using namespace std;
 class ComportementKamikaze : public IComportement
 {
     public:
-        ComportementKamikaze(Bestiole* bestioleAss) : IComportement(bestioleAss){};
-        tuple<float,float> calculDirection(vector<Bestiole*> voisins);
+        ComportementKamikaze() : IComportement(){};
+        tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
     
     private:
         static const int coefficientFonce = 3;

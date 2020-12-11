@@ -4,7 +4,7 @@
 
 using namespace std;
 
-tuple<float,float> ComportementGregaire::calculDirection(vector<Bestiole*> voisins)
+tuple<float,float> ComportementGregaire::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     if(voisins.size() == 0)
     {

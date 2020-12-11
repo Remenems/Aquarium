@@ -8,8 +8,8 @@ using namespace std;
 class ComportementPeureuse : public IComportement
 {
     public:
-        ComportementPeureuse(Bestiole* bestioleAss) : IComportement(bestioleAss){};
-        tuple<float,float> calculDirection(vector<Bestiole*> voisins);
+        ComportementPeureuse() : IComportement(){};
+        tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
 
     private:
         int seuilAvantPeur;

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisins)
+tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     //Recherche de la bestiole la plus proche (Calcul de la distance à partir des x,y)
     if(voisins.size() == 0)

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-tuple<float,float> ComportementPrevoyante::calculDirection(vector<Bestiole*> voisins)
+tuple<float,float> ComportementPrevoyante::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     //TODO Implémentation de caculDirection
     //Evite les trajectoires ???

@@ -15,11 +15,9 @@ using namespace std;
 
 class IComportement
 {
-    protected:
-        Bestiole& bestioleAssociee;
     public:
-        IComportement(Bestiole* b) { bestioleAssociee = &b; };
-        virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins) = 0;
+        IComportement() {};
+        virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee) = 0;
 };
 
 #endif

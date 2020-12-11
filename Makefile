@@ -11,6 +11,9 @@ Bestiole.o : Bestiole.h Bestiole.cpp
 Milieu.o : Milieu.h Milieu.cpp
 	g++ -Wall -std=c++11  -c Milieu.cpp -I .
 
+Clones.o : Clones.h Clones.cpp
+	g++ -Wall -std=c++11 -c Clones.cpp -I .
+
 #Comportements
 Comportements: ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o
 
