@@ -8,16 +8,26 @@ using namespace std;
 ComportementMultiple::ComportementMultiple() : IComportement()
 {
     //Initialisation de la liste des comportements
-    comportements = vector<IComportement>();
-    comportements.push_back(ComportementPeureuse());
-    comportements.push_back(ComportementGregaire());
-    comportements.push_back(ComportementPrevoyante());
-    comportements.push_back(ComportementKamikaze());
+    comportements = vector<IComportement*>();
+    comportements.push_back(new ComportementPeureuse());
+    comportements.push_back(new ComportementGregaire());
+    comportements.push_back(new ComportementPrevoyante());
+    comportements.push_back(new ComportementKamikaze());
     //Initialisation du comportement actif
     int choix = rand() % comportements.size();
-    comportementActif = &(comportements.at(choix));
+    comportementActif = comportements.at(choix);
     //Initialisation du temps avant changement
     tempsAvantChangementDeComportement = tempsEntreDeuxChangementsDeComportement;
+}
+
+ComportementMultiple::~ComportementMultiple()
+{
+    int s = comportements.size();
+    for(int i = 0; i<s;i++)
+    {
+        delete[] comportements.at(0);
+    }
+    delete comportementActif;
 }
 
 
@@ -28,7 +38,7 @@ tuple<float,float> ComportementMultiple::calculDirection(vector<Bestiole*> voisi
     if(tempsAvantChangementDeComportement<=0)
     {
         int choix = rand() % comportements.size();
-        comportementActif = &(comportements.at(choix));
+        comportementActif = comportements.at(choix);
         tempsAvantChangementDeComportement = tempsEntreDeuxChangementsDeComportement;
     }
     //calcule la direction pour le comportement selectionné

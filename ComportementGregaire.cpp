@@ -4,6 +4,11 @@
 
 using namespace std;
 
+ComportementGregaire::ComportementGregaire() : IComportement()
+{
+
+}
+
 tuple<float,float> ComportementGregaire::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     if(voisins.size() == 0)

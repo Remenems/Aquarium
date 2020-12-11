@@ -2,13 +2,14 @@
 #define _GREGAIRE_H_
 
 #include "IComportement.h"
+#include <vector>
 
 using namespace std;
 
 class ComportementGregaire : public IComportement
 {
     public:
-        ComportementGregaire() : IComportement(){};
+        ComportementGregaire();
         tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
 };
 

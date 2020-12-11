@@ -1,17 +1,13 @@
 #ifndef _ICOMP_H_
 #define _ICOMP_H_
 
-#include <iostream>
+//#include <iostream>
 #include <vector>
 #include "Bestiole.h"
 
-#include "ComportementGregaire.h"
-#include "ComportementPeureuse.h"
-#include "ComportementKamikaze.h"
-#include "ComportementPrevoyante.h"
-#include "ComportementMultiple.h"
-
 using namespace std;
+
+class Bestiole;
 
 class IComportement
 {

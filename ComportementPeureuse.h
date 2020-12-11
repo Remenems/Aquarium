@@ -2,6 +2,8 @@
 #define _PEUREUSE_H_
 
 #include "IComportement.h"
+#include <vector>
+#include <tuple>
 
 using namespace std;
 

@@ -4,11 +4,19 @@
 
 #include "IComportement.h"
 
+#include "ComportementGregaire.h"
+#include "ComportementKamikaze.h"
+#include "ComportementMultiple.h"
+#include "ComportementPeureuse.h"
+#include "ComportementPrevoyante.h"
+
 #include <cstdlib>
 #include <cmath>
 #include <tuple>
 
 const double MAX_VITESSE = 10.;
+
+static float modulo(float x, float y);
 
 Bestiole::Bestiole()
 {
@@ -156,10 +164,10 @@ void Bestiole::draw( UImg & support )
 float Bestiole::distanceEntreBestioles(Bestiole& b){
    int dx = x - b.getX();
    int dy = y - b.getY();
+   return sqrt(static_cast<float>(dx*dy + dy*dy));
 }
 
-//accesseurs
-#pragma region accesseurs
+//Accesseurs
 
 float Bestiole::getDirection() const{
    return direction;
@@ -264,8 +272,6 @@ float Bestiole::getCarapace() const{
 void Bestiole::changerCarapace(float c){
    carapace = c;
 }
-
-#pragma endregion accesseurs
 
 void Bestiole::action( Milieu & monMilieu )
 {

@@ -2,6 +2,9 @@
 #define _PROTOTYPE_BEST_H_
 
 /* interface du design pattern Prototype */
+#include "Bestiole.h"
+
+class Bestiole;
 
 class IPrototypeBestiole
 {

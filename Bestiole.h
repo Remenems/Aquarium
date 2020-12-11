@@ -18,6 +18,11 @@ using namespace std;
 class Milieu;
 class IComportement;
 
+enum CapteurType
+{
+   Oeil,
+   Oreilles,
+};
 
 class Bestiole : public IPrototypeBestiole
 {
@@ -114,12 +119,6 @@ public :
    void setCouleur(T* couleur);
 
 };
-
-enum CapteurType
-{
-   Oeil,
-   Oreilles,
-}
 
 
 #endif

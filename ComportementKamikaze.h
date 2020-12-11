@@ -2,6 +2,7 @@
 #define _KAMIKAZE_H_
 
 #include "IComportement.h"
+#include <vector>
 
 using namespace std;
 

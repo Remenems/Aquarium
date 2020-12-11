@@ -16,10 +16,11 @@ class ComportementMultiple : public IComportement
 {
     public:
         ComportementMultiple();
+        ~ComportementMultiple();
         tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
 
     private:
-        vector<IComportement> comportements;
+        vector<IComportement*> comportements;
         
         IComportement* comportementActif;
         int tempsAvantChangementDeComportement;
