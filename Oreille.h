@@ -4,7 +4,7 @@
 #include "CapteurDecorator.h"
 class Oreille
 {
-    private:
+    protected:
         float distanceOuie;
     public:
         Bestiole* clone();

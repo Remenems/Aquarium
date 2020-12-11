@@ -4,7 +4,7 @@
 #include "Bestiole.h"
 class CapteurDecorator : public Bestiole
 {
-    private:
+    protected:
         Bestiole* bestioleDecoreePtr;
 
     public:
