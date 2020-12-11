@@ -38,7 +38,7 @@ Bestiole::Bestiole( const Bestiole & b )
    dateDeces = b.getDateDeces();
    probabiliteDecesCollision = b.getProbabiliteDecesCollision();
    probabiliteClonage = b.getProbabiliteClonage();
-   direction = b.getDirection();
+   direction = modulo(b.getDirection() + M_PI, 2 * M_PI); // va dans la direction opposée à la bestiole passée en paramètre
    vitesse = b.getVitesse();
    couleur = b.getCouleur();
    //TODO initialiser le comportement de la bonne manière (même que celui de la bestiole originale)
@@ -243,7 +243,7 @@ void Bestiole::action( Milieu & monMilieu )
 }
 
  // modulo
-float modulo(float x, float y) //y>0
+static float modulo(float x, float y) //y>0
 {
    if(y<0)
       y = abs(y);
