@@ -1,9 +1,15 @@
 #ifndef _OREILLE_H_
 #define _OREILLE_H_
 
+#include "CapteurDecorator.h"
 class Oreille
 {
-//TODO Classe oreille
+    private:
+        float distanceOuie;
+    public:
+        Bestiole* clone();
+        vector<Bestiole*> detecter();
+        bool aiJeCeCapteur(string capteur);
 };
 
 

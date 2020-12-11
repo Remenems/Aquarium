@@ -1,9 +1,16 @@
 #ifndef _YEUX_H_
 #define _YEUX_H_
 
-class Yeux
+#include "CapteurDecorator.h"
+class Yeux : public CapteurDecorator
 {
-//TODO classe yeux
+    private:
+        float champAngulaire;
+        float distanceVision;
+    public:
+        Bestiole* clone();
+        vector<Bestiole*> detecter();
+        bool aiJeCeCapteur(string capteur);
 };
 
 #endif

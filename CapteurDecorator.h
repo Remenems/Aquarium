@@ -1,9 +1,16 @@
 #ifndef _CAPTEUR_DECORATOR_H_
 #define _CAPTEUR_DECORATOR_H_
 
-class CapteurDecorator
+#include "Bestiole.h"
+class CapteurDecorator : public Bestiole
 {
-//TODO classe capteur decorator
+    private:
+        Bestiole* bestioleDecoreePtr;
+
+    public:
+        Bestiole* clone();
+        virtual vector<Bestiole*> detecter() = 0;
+        virtual bool aiJeCeCapteur(string capteur) = 0;
 };
 
 #endif
