@@ -98,7 +98,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 }
 
 
-void Bestiole::repositionnerBestiole( int xLim, int yLim )
+void Bestiole::actualiserPosition( int xLim, int yLim )
 {
    tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(bestiolesVoisines);//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
@@ -266,13 +266,6 @@ void Bestiole::changerCarapace(float c){
 }
 
 #pragma endregion accesseurs
-
-void Bestiole::action( Milieu & monMilieu )
-{
-
-   repositionnerBestiole( monMilieu.getWidth(), monMilieu.getHeight() );
-
-}
 
  // modulo
 static float modulo(float x, float y) //y>0

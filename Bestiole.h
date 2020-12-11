@@ -69,10 +69,8 @@ public :
 
 
    void draw(UImg & support);
-   void repositionnerBestiole(int xLim, int yLim);
+   void actualiserPosition(int xLim, int yLim);
    float distanceEntreBestioles(Bestiole& b);
-
-   void action(Milieu& monMilieu);
 
    // accesseurs des accessoires
    void changerNageoire(float coefficient);

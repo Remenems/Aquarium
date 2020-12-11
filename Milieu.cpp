@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "Clones.h"
+#include <tuple>
 
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
@@ -55,7 +56,7 @@ void Milieu::verifierAgeBestiole()
 {
    for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
    {
-      if (it -> getAgeDeces() = 0){
+      if (it -> getAgeDeces() <= 0){
          tuerBestiole(*it);
       }
    }
@@ -86,6 +87,24 @@ void Milieu::verifierCollision()
    }
 }
 
+void Milieu::repositionnerBestioles()
+{
+   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   {
+      it -> actualiserPosition(width, height);
+   }
+}
+
+void Milieu::actualiserVoisines()
+{
+   for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
+   {
+      vector<std::tuple<float,float>> res = it -> detecter();
+      std::vector<Bestiole> voisines = std::vector<Bestiole>();
+      for
+   }
+}
+
 void Milieu::step( void )
 {
    clock++;
@@ -93,7 +112,6 @@ void Milieu::step( void )
    for ( std::vector<Bestiole>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it )
    {
 
-      it->action( *this );
       it->draw( *this );
 
    } // for
