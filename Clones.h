@@ -3,6 +3,7 @@
 
 #include "Bestiole.h"
 #include "IPrototypeBestiole.h"
+#include "SimpleBestiole.h"
 
 class Clones
 {
@@ -14,7 +15,7 @@ class Clones
         Bestiole* bestioleMultiple;
 
     public :
-        Clones( int clock );
+        Clones();
 
         Bestiole* getGregaire() const;
         Bestiole* getPeureuse() const;

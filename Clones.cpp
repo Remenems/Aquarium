@@ -3,13 +3,13 @@
 #include <cstdlib>
 #include <cmath>
 
-Clones::Clones( int clock )
+Clones::Clones()
 {
-    bestioleGregaire = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementGregaire(), M_PI, 2);
-    bestiolePeureuse = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementPeureuse(), M_PI, 2);
-    bestioleKamikaze = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementKamikaze(), M_PI, 2);
-    bestiolePrevoyante = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementPrevoyante(), M_PI, 2);
-    bestioleMultiple = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementMultiple(), M_PI, 2);
+    bestioleGregaire = SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementGregaire(), M_PI, 2);
+    bestiolePeureuse = SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementPeureuse(), M_PI, 2);
+    bestioleKamikaze = SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementKamikaze(), M_PI, 2);
+    bestiolePrevoyante = SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementPrevoyante(), M_PI, 2);
+    bestioleMultiple = SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementMultiple(), M_PI, 2);
 }
 
 Bestiole* Clones::getGregaire() const
