@@ -14,9 +14,7 @@ class Clones
         Bestiole* bestioleMultiple;
 
     public :
-        /*
-        A ajouter quand les comportements seront faits
-        Clones( void );*/
+        Clones( int clock );
 
         Bestiole* getGregaire() const;
         Bestiole* getPeureuse() const;

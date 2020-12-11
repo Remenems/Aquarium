@@ -1,9 +1,16 @@
 #include "Clones.h"
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
 
-/*Clones( void )
+Clones::Clones( int clock )
 {
-     A compléter quand on aura fait les comportements 
-}*/
+    bestioleGregaire = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementGregaire(), M_PI, 2);
+    bestiolePeureuse = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementPeureuse(), M_PI, 2);
+    bestioleKamikaze = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementKamikaze(), M_PI, 2);
+    bestiolePrevoyante = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementPrevoyante(), M_PI, 2);
+    bestioleMultiple = new SimpleBestiole(0,1,1,1,clock + 100, 0.5, 0.005, new ComportementMultiple(), M_PI, 2);
+}
 
 Bestiole* Clones::getGregaire() const
 {
