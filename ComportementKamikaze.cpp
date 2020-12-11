@@ -5,6 +5,8 @@
 
 using namespace std;
 
+const int ComportementKamikaze::coefficientFonce = 3;
+
 tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     //Recherche de la bestiole la plus proche (Calcul de la distance à partir des x,y)
@@ -26,8 +28,8 @@ tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisi
             }
         }
         //retourne la direction pour atteindre la bestiole la plus proche, et une vitesse x3
-        float diffY = get<1>(voisins.at(minIndex)->getPosition()) - get<1>(bestioleAssociee.getPosition());
-        float diffX = get<0>(voisins.at(minIndex)->getPosition()) - get<0>(bestioleAssociee.getPosition());
+        float diffY = voisins.at(minIndex)->getY() - bestioleAssociee.getY();
+        float diffX = voisins.at(minIndex)->getX() - bestioleAssociee.getX();
         
         float direction = (diffX==0)? M_PI/2 : atan(diffY / diffX) ;
         return make_tuple(direction,coefficientFonce);

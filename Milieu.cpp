@@ -133,6 +133,11 @@ void Milieu::ajouterBestioles(int nombre)
    }
 }
 
+void Milieu::tuerBestiole(Bestiole* bestiole)
+{
+   //TODO tuerBestiole
+}
+
 
 /*int Milieu::nbVoisins( const Bestiole & b )
 {

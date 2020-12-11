@@ -21,8 +21,8 @@ enum ComportType
 class IComportement
 {
     public:
-        IComportement();
-        virtual ~IComportement();
+        IComportement() {};
+        virtual ~IComportement() {};
         virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee) = 0;
         virtual ComportType getComportementType() = 0;
 };

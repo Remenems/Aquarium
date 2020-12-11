@@ -14,7 +14,7 @@ class ComportementKamikaze : public IComportement
         ComportType getComportementType() { return KAMIK; };
 
     private:
-        static const int coefficientFonce = 3;
+        static const int coefficientFonce;
 };
 
 #endif
