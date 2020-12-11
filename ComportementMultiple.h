@@ -18,7 +18,7 @@ class ComportementMultiple : public IComportement
         ComportementMultiple();
         ~ComportementMultiple();
         tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
-
+        ComportType getComportementType() {return MULTI;};
     private:
         vector<IComportement*> comportements;
         

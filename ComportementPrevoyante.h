@@ -11,6 +11,7 @@ class ComportementPrevoyante : public IComportement
     public:
         ComportementPrevoyante() : IComportement(){};
         tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
+        ComportType getComportementType() { return PREV; };
 };
 
 #endif

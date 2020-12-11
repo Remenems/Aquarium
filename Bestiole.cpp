@@ -88,8 +88,29 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
 
    bestiolesVoisines = vector<Bestiole*>();
 
-   //TODO initialiser le comportement de la bonne manière (même que celui de la bestiole originale)
-   comportement = b.comportement;
+   switch (b.comportement->getComportementType())
+   {
+   case PEUR:
+      comportement = new ComportementPeureuse();
+      break;
+   
+   case PREV:
+      comportement = new ComportementPrevoyante();
+      break;
+
+   case KAMIK:
+      comportement = new ComportementKamikaze();
+      break;
+
+   case GREG:
+      comportement = new ComportementGregaire();
+      break;
+
+   case MULTI:   
+   default:
+      comportement = new ComportementMultiple();
+      break;
+   }
 }
 
 
