@@ -61,7 +61,7 @@ public :
    Bestiole();
    Bestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
    Bestiole(const Bestiole& bestiole, int x, int y);
-   ~Bestiole( void );
+   virtual ~Bestiole( void );
 
    virtual Bestiole* clone(int x, int y) = 0; // clone la bestiole et la positionne à la position (x,y)
 

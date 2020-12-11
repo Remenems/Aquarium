@@ -12,7 +12,8 @@ class Bestiole;
 class IComportement
 {
     public:
-        IComportement() {};
+        IComportement();
+        virtual ~IComportement();
         virtual tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee) = 0;
 };
 
