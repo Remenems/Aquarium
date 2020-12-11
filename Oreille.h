@@ -2,13 +2,14 @@
 #define _OREILLE_H_
 
 #include "CapteurDecorator.h"
-class Oreille
+class Oreille : public CapteurDecorator
 {
     protected:
         float distanceOuie;
     public:
+        Oreille(Bestiole* bestiole, float distance);
         Bestiole* clone();
-        vector<Bestiole*> detecter();
+        vector<tuple<float,float>> detecter();
         bool aiJeCeCapteur(CapteurType type);
 };
 

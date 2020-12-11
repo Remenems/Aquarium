@@ -7,10 +7,11 @@
 class SimpleBestiole : public Bestiole
 {
     public:
+        SimpleBestiole( void );
         SimpleBestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur);
         SimpleBestiole(const Bestiole& bestiole);
         Bestiole* clone();
-        vector<Bestiole*> detecter();
+        vector<tuple<float,float>> detecter();
         bool aiJeCeCapteur(CapteurType type);
 
 };

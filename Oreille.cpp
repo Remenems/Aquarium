@@ -1,17 +1,24 @@
-#include "Yeux.h"
+#include "Oreille.h"
 #include "Bestiole.h"
+
+Oreille::Oreille(Bestiole* bestiole, float distance) : CapteurDecorator(bestiole)
+{
+    distanceOuie = distance;
+}
         
-Bestiole* Yeux::clone()
+Bestiole* Oreille::clone()
 {
     //TODO clone pour les oreilles
 }
 
-vector<Bestiole*> detecter()
+vector<tuple<float,float>> Oreille::detecter()
 {
- //TODO detecter pour les oreilles
+    vector<tuple<float,float>> result = bestioleDecoreePtr->detecter();
+    result.push_back(make_tuple(distanceOuie,2*M_PI));
+    return result;
 }
 
-bool Yeux::aiJeCeCapteur(CapteurType type)
+bool Oreille::aiJeCeCapteur(CapteurType type)
 {
     if(type == Oreilles)
     {

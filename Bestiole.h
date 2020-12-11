@@ -53,8 +53,8 @@ private :
 public :
 
    //void changerComportement(IComportement*);
-
-   Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse, T* couleur);
+   Bestiole();
+   Bestiole(float camouflage, float carapace, float nageoire, float taille, int dateDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement& comportement, float direction, float vitesse);
    Bestiole(const Bestiole& bestiole);
    ~Bestiole( void );
 
@@ -63,7 +63,7 @@ public :
    void initCoords( int xLim, int yLim );
 
    bool mourrirSiCollision();
-   virtual vector<Bestiole*> detecter() = 0;
+   virtual vector<tuple<float,float>> detecter() = 0;
    virtual bool aiJeCeCapteur(CapteurType type) = 0;
 
    void draw(UImg & support);

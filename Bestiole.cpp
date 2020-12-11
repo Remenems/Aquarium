@@ -8,10 +8,34 @@
 #include <cmath>
 #include <tuple>
 
-Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit, T* coul)
+const double MAX_VITESSE = 10.;
+
+Bestiole::Bestiole()
 {
    x = 0;
-   y = 0; // à changer
+   y = 0;
+   cumulX = 0;
+   cumulY = 0;
+   camouflage = static_cast<double>( rand() )/RAND_MAX * (1 /*Différence entre le cam max et le cam min*/)/*+cam min*/;
+   /* idem pour tous les autres */ //TODO constructeur sans arguments, initialisation aléatoir
+   carapace =  static_cast<double>( rand() )/RAND_MAX ;
+   nageoire = static_cast<double>( rand() )/RAND_MAX ;
+   taille = static_cast<double>( rand() )/RAND_MAX ;
+   dateDeces = rand() % 1000;
+   probabiliteDecesCollision = static_cast<double>( rand() )/RAND_MAX ;
+   probabiliteClonage = static_cast<double>( rand() )/RAND_MAX ;
+
+   direction = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
+   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+}
+
+Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, float probaDecesCollision, float probaClonage, IComportement& comport, float dir, float vit)
+{
+   x = 0;
+   y = 0;
+   cumulX = 0;
+   cumulY = 0;
+
    camouflage = cam;
    carapace = car;
    nageoire = nag;
@@ -19,9 +43,15 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, floa
    dateDeces = daDeces;
    probabiliteDecesCollision = probaDecesCollision;
    probabiliteClonage = probaClonage;
+
    direction = dir;
    vitesse = vit;
-   couleur = coul;
+
+   couleur = new T[ 3 ];
+   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+
    comportement = &comport;
 }
 
@@ -39,7 +69,10 @@ Bestiole::Bestiole( const Bestiole & b )
    probabiliteClonage = b.getProbabiliteClonage();
    direction = modulo(b.getDirection() + M_PI, 2 * M_PI); // va dans la direction opposée à la bestiole passée en paramètre
    vitesse = b.getVitesse();
-   couleur = b.getCouleur();
+
+   couleur = new T[ 3 ];
+   memcpy( couleur, b.couleur, 3*sizeof(T) );
+
    //TODO initialiser le comportement de la bonne manière (même que celui de la bestiole originale)
    comportement = new ComportementGregaire(this);
 }
@@ -67,7 +100,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 void Bestiole::repositionnerBestiole( int xLim, int yLim )
 {
-   tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(detecter());//comportement.calculDirection();
+   tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(bestiolesVoisines);//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
    float vitessePourCeTour = vitesse*get<1>(coupleDirectionVitesse);
 

@@ -8,8 +8,9 @@ class CapteurDecorator : public Bestiole
         Bestiole* bestioleDecoreePtr;
 
     public:
-        Bestiole* clone();
-        virtual vector<Bestiole*> detecter() = 0;
+        CapteurDecorator(Bestiole* bestiole) : bestioleDecoreePtr(bestiole) {} ;
+        Bestiole* clone() = 0;
+        virtual vector<tuple<float,float>> detecter() = 0;
         virtual bool aiJeCeCapteur(string capteur) = 0;
 };
 
