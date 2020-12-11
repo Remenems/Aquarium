@@ -22,8 +22,7 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int daDeces, floa
    direction = dir;
    vitesse = vit;
    couleur = coul;
-   //TODO intiialiser le comportement (au hasard, donné en paramètre)
-   comportement = new ComportementGregaire(this);
+   comportement = &comport;
 }
 
 
