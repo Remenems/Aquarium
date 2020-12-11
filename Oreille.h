@@ -8,6 +8,7 @@ class Oreille : public CapteurDecorator
         float distanceOuie;
     public:
         Oreille(Bestiole* bestiole, float distance);
+        ~Oreille();
         Bestiole* clone(int x, int y);
         vector<tuple<float,float>> detecter();
         bool aiJeCeCapteur(CapteurType type);

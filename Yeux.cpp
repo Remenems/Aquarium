@@ -6,6 +6,11 @@ Yeux::Yeux(Bestiole* bestiole, float distance, float angle) : CapteurDecorator(b
     distanceVision = distance;
     champAngulaire = angle;
 }
+
+Yeux::~Yeux()
+{
+    delete bestioleDecoreePtr;
+}
         
 Bestiole* Yeux::clone(int x, int y)
 {
