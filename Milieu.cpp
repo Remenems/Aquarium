@@ -142,6 +142,45 @@ void Milieu::actualiserVoisines()
    }
 }
 
+void Milieu::initialisation(int nombre, std::vector<float> pourcentageComportement)
+{
+   //TODO
+}
+
+void Milieu::ajouterCarapace(std::vector<Bestiole*> listeBestioles, float coefficient)
+{
+   for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
+   {
+      listeBestioles.at(i)->changerCarapace(coefficient);
+   }
+}
+
+void Milieu::ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coefficient)
+{
+   for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
+   {
+      listeBestioles.at(i)->changerCamouflage(coefficient);
+   }
+}
+
+void Milieu::ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coefficient)
+{
+   for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
+   {
+      listeBestioles.at(i)->changerNageoire(coefficient);
+   }
+}
+
+void Milieu::changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles)
+{
+   /*  FAIRE LA FONCTION CHANGERCOMPORTEMENT DANS BESTIOLE.H ET BESTIOLE.CPP
+   for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
+   {
+      listeBestioles.at(i)-> changerComportement(comportement);
+   }
+   */
+}
+
 void Milieu::step( void )
 {
    clock++;

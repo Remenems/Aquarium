@@ -39,9 +39,9 @@ public :
    void repositionnerBestioles();
    void actualiserVoisines();
    void initialisation(int nombre, std::vector<float> pourcentageComportement);
-   void ajouterCarapace(std::vector<Bestiole*> listeBestioles);
-   void ajouterNageoire(std::vector<Bestiole*> listeBestioles);
-   void ajouterCamouflage(std::vector<Bestiole*> listeBestioles);
+   void ajouterCarapace(std::vector<Bestiole*> listeBestioles, float coefficient);
+   void ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coefficient);
+   void ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coefficient);
    void changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles);
    void ajouterYeux(std::vector<Bestiole*> listeBestioles);
    void ajouterOreilles(std::vector<Bestiole*> listeBestioles);
