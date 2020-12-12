@@ -103,14 +103,43 @@ void Milieu::repositionnerBestioles()
 
 void Milieu::actualiserVoisines()
 {
-   //vector<tuple<float,float>> res = vector<tuple<float,float>>();
+   std::vector<tuple<float,float>> res = std::vector<tuple<float,float>>();
    for (long unsigned int i =0 ; i<bestioles.size();i++)
    {
-      //res = bestioles.at(i) -> detecter();      
+      res = bestioles.at(i) -> detecter();      
       std::vector<Bestiole*> voisines = std::vector<Bestiole*>();
+      
+      int x1 = bestioles.at(i) -> getX();
+      float direction = bestioles.at(i) -> getDirection();
+
+      for (long unsigned int n =0 ; n<bestioles.size(); n++)
+      {
+         if (bestioles.at(i) != bestioles.at(n))
+         {
+
+            int x2 = bestioles.at(n) -> getX();
+            float distance = bestioles.at(i) -> distanceEntreBestioles(*(bestioles.at(n)));
+            float angle = std::acos((x2 - x1)/distance);
+
+            if (distance = 0){voisines.push_back(bestioles.at(n));}
+
+            for (long unsigned int k=0; k<res.size(); k++)
+            {
+               float distanceMax = get<0>(res.at(k));
+               float angleVu = get<1>(res.at(k));
+
+               float angleMax = direction + angleVu/2;
+               float angleMin = direction - angleVu/2;
+
+               if (distance < distanceMax && angle>angleMin && angle<angleMax)
+               {
+                  voisines.push_back(bestioles.at(n));
+               }
+            }
+         }
+      }
       bestioles.at(i)->setBestiolesVoisines(voisines);
    }
-   //TODO
 }
 
 void Milieu::step( void )
