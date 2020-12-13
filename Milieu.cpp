@@ -106,15 +106,17 @@ void Milieu::repositionnerBestioles()
 
 void Milieu::actualiserVoisines()
 {
-   std::vector<tuple<float,float>> res = std::vector<tuple<float,float>>();
+   std::vector<tuple<float,float>> zones = std::vector<tuple<float,float>>();
    for (long unsigned int i =0 ; i<bestioles.size();i++)
    {
-      res = bestioles.at(i) -> detecter();      
+      //On récupère la "zone" de détection de la bestiole
+      zones = bestioles.at(i) -> detecter();      
       std::vector<Bestiole*> voisines = std::vector<Bestiole*>();
       
       int x1 = bestioles.at(i) -> getX();
       float direction = bestioles.at(i) -> getDirection();
 
+      //On vérifie pour chaque bestiole si elle est dans la zone
       for (long unsigned int n =0 ; n<bestioles.size(); n++)
       {
          if (bestioles.at(i) != bestioles.at(n))
@@ -122,21 +124,28 @@ void Milieu::actualiserVoisines()
 
             int x2 = bestioles.at(n) -> getX();
             float distance = bestioles.at(i) -> distanceEntreBestioles(*(bestioles.at(n)));
-            float angle = std::acos((x2 - x1)/distance);
 
-            if (distance = 0){voisines.push_back(bestioles.at(n));}
-
-            for (long unsigned int k=0; k<res.size(); k++)
+            //Cas 1 : la bestiole sont sur la meme position -> detectée
+            if (distance == 0){voisines.push_back(bestioles.at(n));}
+            //Cas 2 : la distance est différente -> on vérifie par zone
+            else
             {
-               float distanceMax = get<0>(res.at(k));
-               float angleVu = get<1>(res.at(k));
-
-               float angleMax = direction + angleVu/2;
-               float angleMin = direction - angleVu/2;
-
-               if (distance < distanceMax && angle>angleMin && angle<angleMax)
+               float angle = std::acos((x2 - x1)/distance); // calcul de l'angle entre les deux bestioles par rapport à 0
+               //On vérifie pour chaque zone si la bestiole est dans la zone en question
+               for (long unsigned int k=0; k<zones.size(); k++)
                {
-                  voisines.push_back(bestioles.at(n));
+                  // Une zone est définie par un rayon et un angle (angle = 2*PI si la zone est un cercle)
+                  float distanceMax = get<0>(zones.at(k));
+                  float angleVu = get<1>(zones.at(k));
+
+                  float angleMax = direction + angleVu/2;
+                  float angleMin = direction - angleVu/2;
+
+                  if (distance < distanceMax && angle>angleMin && angle<angleMax)
+                  {
+                     //rempli les conditions -> voisine
+                     voisines.push_back(bestioles.at(n));
+                  }
                }
             }
          }
