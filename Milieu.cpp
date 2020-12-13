@@ -201,7 +201,8 @@ void Milieu::ajouterBestioles(int nombre)
 
 void Milieu::tuerBestiole(Bestiole* bestiole)
 {
-   //TODO tuerBestiole
+   bestioles.erase(remove(bestioles.begin(), bestioles.end(), bestiole), bestioles.end());
+   delete bestiole;
 }
 
 
