@@ -6,6 +6,9 @@
 #include "Clones.h"
 #include <tuple>
 
+#include "Yeux.h"
+#include "Oreille.h"
+
 #include <iostream>
 
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
@@ -203,6 +206,47 @@ void Milieu::tuerBestiole(Bestiole* bestiole)
 {
    bestioles.erase(remove(bestioles.begin(), bestioles.end(), bestiole), bestioles.end());
    delete bestiole;
+}
+
+void Milieu::ajouterYeux(std::vector<Bestiole*> listeBestioles)
+{
+   //On appelle la fonction pour une bestiole à l'ensemble des bestioles de listeBestioles
+   for(long unsigned int i =0; i< listeBestioles.size();i++)
+   {
+      ajouterYeux(listeBestioles.at(i));
+   }
+}
+
+void Milieu::ajouterYeux(Bestiole* bestiole)
+{  
+   //On vérifie si la bestiole a déjà des yeux ou pas
+   if(bestiole->aiJeCeCapteur(Oeil) == false)
+   {
+      //Ajouter les yeux
+      float angle = M_PI_2; //TODO à changer (angle et distance)
+      float distance = 3;
+      bestiole = new Yeux(bestiole, distance, angle);
+   }
+}
+
+void Milieu::ajouterOreilles(std::vector<Bestiole*> listeBestioles)
+{
+   //On appelle la fonction pour une bestiole à l'ensemble des bestioles de listeBestioles
+   for(long unsigned int i =0; i< listeBestioles.size();i++)
+   {
+      ajouterOreilles(listeBestioles.at(i));
+   }
+}
+
+void Milieu::ajouterOreilles(Bestiole* bestiole)
+{
+   //On vérifie si la bestiole a déjà des oreilles ou pas
+   if(bestiole->aiJeCeCapteur(Oreilles) == false)
+   {
+      //Ajouter une oreille
+      float distance = 5;
+      bestiole = new Oreille(bestiole, distance);
+   }
 }
 
 

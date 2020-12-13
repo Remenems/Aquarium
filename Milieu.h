@@ -44,7 +44,9 @@ public :
    void ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coefficient);
    void changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles);
    void ajouterYeux(std::vector<Bestiole*> listeBestioles);
+   void ajouterYeux(Bestiole* bestiole);
    void ajouterOreilles(std::vector<Bestiole*> listeBestioles);
+   void ajouterOreilles(Bestiole* bestiole);
    void afficherBestiole();
    void tuerBestiole(Bestiole* bestiole);
    void ajouterBestioles(int nombre);
