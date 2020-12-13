@@ -57,7 +57,6 @@ private :
 //méthodes
 public :
 
-   //void changerComportement(IComportement*);
    Bestiole();
    Bestiole(float camouflage, float carapace, float nageoire, float taille, int ageDeces, float probabiliteDecesCollision, float probabiliteClonage, IComportement* comportement, float direction, float vitesse);
    Bestiole(const Bestiole& bestiole, int x, int y);
@@ -72,6 +71,7 @@ public :
    virtual vector<tuple<float,float>> detecter() = 0;
    virtual bool aiJeCeCapteur(CapteurType type) = 0;
 
+   void changerComportement(IComportement*);
 
    void draw(UImg & support);
    void actualiserPosition(int xLim, int yLim);

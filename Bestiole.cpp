@@ -222,6 +222,11 @@ float Bestiole::distanceEntreBestioles(Bestiole& b){
 
 //Accesseurs
 
+void Bestiole::changerComportement(IComportement* newComp)
+{
+   comportement = newComp;
+}
+
 float Bestiole::getDirection() const{
    return direction;
 }

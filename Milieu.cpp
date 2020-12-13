@@ -173,12 +173,10 @@ void Milieu::ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coeffi
 
 void Milieu::changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles)
 {
-   /*  FAIRE LA FONCTION CHANGERCOMPORTEMENT DANS BESTIOLE.H ET BESTIOLE.CPP
    for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
    {
       listeBestioles.at(i)-> changerComportement(comportement);
    }
-   */
 }
 
 void Milieu::step( void )
