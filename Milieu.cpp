@@ -207,7 +207,9 @@ void Milieu::ajouterBestioles(int nombre)
 {
    for(int i=0;i<nombre;i++)
    {
-      bestioles.push_back(new SimpleBestiole());
+      Bestiole* b = new SimpleBestiole();
+      bestioles.push_back(b);
+      b->initCoords(width,height);
    }
 }
 

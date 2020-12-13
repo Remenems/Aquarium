@@ -28,7 +28,8 @@ Bestiole::Bestiole()
    /* idem pour tous les autres */ //TODO constructeur sans arguments, initialisation aléatoir
    carapace =  static_cast<double>( rand() )/RAND_MAX ;
    nageoire = static_cast<double>( rand() )/RAND_MAX ;
-   taille = static_cast<double>( rand() )/RAND_MAX ;
+   taille = (static_cast<double>( rand() )/RAND_MAX * 12.) + 4.;
+   cout << taille << endl;
    ageDeces = rand() % 1000;
    probabiliteDecesCollision = static_cast<double>( rand() )/RAND_MAX ;
    probabiliteClonage = static_cast<double>( rand() )/RAND_MAX ;
@@ -37,6 +38,12 @@ Bestiole::Bestiole()
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
    bestiolesVoisines = vector<Bestiole*>();
+
+   couleur = new T[ 3 ];
+   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+
    int choix = rand() % 5;
    switch (choix)
    {

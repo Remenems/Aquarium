@@ -5,6 +5,8 @@
 #include <iostream>
 #include <CImg.h>
 
+#include <tuple>
+
 using namespace std;
 using namespace cimg_library;
 
@@ -20,19 +22,19 @@ private :
 
    int delay;
 
-   static const tuple<float,float> plageChampAngulaireVision;
-   static const tuple<float,float> plageDistanceVision;
-   static const tuple<float,float> plageDistanceOuie;
-   static const tuple<float,float> plageCapaciteDetectionOuie;
-   static const tuple<float,float> plageCamouflage;
-   static const tuple<float,float> protectionCarapacemax;
+   std::tuple<float,float> plageChampAngulaireVision;
+   std::tuple<float,float> plageDistanceVision;
+   std::tuple<float,float> plageDistanceOuie;
+   std::tuple<float,float> plageCapaciteDetectionOuie;
+   std::tuple<float,float> plageCamouflage;
+   float protectionCarapacemax;
 
-   static const float vitesseNageoireMax;
-   static const float probaMaxClonage;
-   static const int seuilAvantPeurMax;
+   float vitesseNageoireMax;
+   float probaMaxClonage;
+   int seuilAvantPeurMax;
 
 public :
-   Aquarium( int width, int height, int _delay );
+   Aquarium( int width, int height, int _delay, float angleVisionMax, float angleVisionMin, float distanceVisionMax, float distanceVisionMin, float distanceOuieMin, float distanceOuieMax, float capaciteDetectionOuieMin, float capaciteDetectionOuieMax, float camouflageMin, float camouflageMax, float protectionCarapaceMax, float vitesseNageoireMax,float probaMaxClonage, int seuilAvantPeurMax);
    ~Aquarium( void );
 
    Milieu & getMilieu( void ) { return *milieu; }
