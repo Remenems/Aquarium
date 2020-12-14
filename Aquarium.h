@@ -32,9 +32,10 @@ private :
    float vitesseNageoireMax;
    float probaMaxClonage;
    int seuilAvantPeurMax;
+   float probaMaxDecesApresCollision;
 
 public :
-   Aquarium( int width, int height, int _delay, float angleVisionMax, float angleVisionMin, float distanceVisionMax, float distanceVisionMin, float distanceOuieMin, float distanceOuieMax, float capaciteDetectionOuieMin, float capaciteDetectionOuieMax, float camouflageMin, float camouflageMax, float protectionCarapaceMax, float vitesseNageoireMax,float probaMaxClonage, int seuilAvantPeurMax);
+   Aquarium( int width, int height, int _delay, float angleVisionMax, float angleVisionMin, float distanceVisionMax, float distanceVisionMin, float distanceOuieMin, float distanceOuieMax, float capaciteDetectionOuieMin, float capaciteDetectionOuieMax, float camouflageMin, float camouflageMax, float protectionCarapaceMax, float vitesseNageoireMax,float probaMaxClonage, int seuilAvantPeurMax, float probaMaxDecesCollision);
    ~Aquarium( void );
 
    Milieu & getMilieu( void ) { return *milieu; }
@@ -50,6 +51,7 @@ public :
    float getVitesseNageoireMax();
    float getProbaMaxClonage();
    int getSeuilAvantPeurMax();
+   float getProbaMaxDecCollision();
 
 };
 

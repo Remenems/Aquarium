@@ -14,9 +14,35 @@
 #include <cmath>
 #include <tuple>
 
-const double MAX_VITESSE = 10.;
-
 static float modulo(float x, float y);
+
+Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement* comport, float dir, float vit)
+{
+   x = 0;
+   y = 0;
+   cumulX = 0;
+   cumulY = 0;
+
+   camouflage = cam;
+   carapace = car;
+   nageoire = nag;
+   taille = tai;
+   ageDeces = aDeces;
+   probabiliteDecesCollision = probaDecesCollision;
+   probabiliteClonage = probaClonage;
+
+   bestiolesVoisines = vector<Bestiole*>();
+
+   direction = dir;
+   vitesse = vit;
+
+   couleur = new T[ 3 ];
+   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+
+   comportement = comport;
+}
 
 Bestiole::Bestiole()
 {
@@ -24,18 +50,17 @@ Bestiole::Bestiole()
    y = 0;
    cumulX = 0;
    cumulY = 0;
-   camouflage = static_cast<double>( rand() )/RAND_MAX * (1 /*Différence entre le cam max et le cam min*/)/*+cam min*/;
-   /* idem pour tous les autres */ //TODO constructeur sans arguments, initialisation aléatoir
-   carapace =  static_cast<double>( rand() )/RAND_MAX ;
-   nageoire = static_cast<double>( rand() )/RAND_MAX ;
-   taille = (static_cast<double>( rand() )/RAND_MAX * 12.) + 4.;
+   camouflage = 0;
+   carapace =  1;
+   nageoire = 1;
+   taille = 8.;
    cout << taille << endl;
-   ageDeces = rand() % 1000;
-   probabiliteDecesCollision = static_cast<double>( rand() )/RAND_MAX ;
-   probabiliteClonage = static_cast<double>( rand() )/RAND_MAX ;
+   ageDeces = 1000;
+   probabiliteDecesCollision = 1;
+   probabiliteClonage = 0;
 
    direction = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
-   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+   vitesse = 2;//static_cast<double>( rand() )/RAND_MAX*10.;
 
    bestiolesVoisines = vector<Bestiole*>();
 
@@ -70,35 +95,6 @@ Bestiole::Bestiole()
    }
 
 }
-
-Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement* comport, float dir, float vit)
-{
-   x = 0;
-   y = 0;
-   cumulX = 0;
-   cumulY = 0;
-
-   camouflage = cam;
-   carapace = car;
-   nageoire = nag;
-   taille = tai;
-   ageDeces = aDeces;
-   probabiliteDecesCollision = probaDecesCollision;
-   probabiliteClonage = probaClonage;
-
-   bestiolesVoisines = vector<Bestiole*>();
-
-   direction = dir;
-   vitesse = vit;
-
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
-   comportement = comport;
-}
-
 
 Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
 {
@@ -165,6 +161,10 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 }
 
+void Bestiole::vieillir()
+{
+   ageDeces-=1;
+}
 
 void Bestiole::actualiserPosition( int xLim, int yLim )
 {

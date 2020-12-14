@@ -3,7 +3,7 @@
 #include "Milieu.h"
 
 
-Aquarium::Aquarium( int width, int height, int _delay, float angleVisionMax, float angleVisionMin, float distanceVisionMax, float distanceVisionMin, float distanceOuieMin, float distanceOuieMax, float capaciteDetectionOuieMin, float capaciteDetectionOuieMax, float camouflageMin, float camouflageMax, float protectionCarapaceMax, float vitesseNageoiremax,float probamaxClonage, int seuilAvantPeurmax) : CImgDisplay(), delay( _delay )
+Aquarium::Aquarium( int width, int height, int _delay, float angleVisionMax, float angleVisionMin, float distanceVisionMax, float distanceVisionMin, float distanceOuieMin, float distanceOuieMax, float capaciteDetectionOuieMin, float capaciteDetectionOuieMax, float camouflageMin, float camouflageMax, float protectionCarapaceMax, float vitesseNageoiremax,float probamaxClonage, int seuilAvantPeurmax, float probaMaxDecesCollision) : CImgDisplay(), delay( _delay )
 {
 
    int screenWidth = 1280; //screen_width();
@@ -18,6 +18,7 @@ Aquarium::Aquarium( int width, int height, int _delay, float angleVisionMax, flo
    vitesseNageoireMax = vitesseNageoiremax;
    probaMaxClonage = probamaxClonage;
    seuilAvantPeurMax = seuilAvantPeurmax;
+   probaMaxDecesApresCollision = probaMaxDecesCollision;
    cout << "[Création de l'aquarium]" << endl;
 
    milieu = new Milieu( width, height, this );
@@ -106,4 +107,9 @@ float Aquarium::getProbaMaxClonage()
 int Aquarium::getSeuilAvantPeurMax()
 {
    return seuilAvantPeurMax;
+}
+
+float Aquarium::getProbaMaxDecCollision()
+{
+   return probaMaxDecesApresCollision;
 }

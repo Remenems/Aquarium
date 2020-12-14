@@ -74,6 +74,7 @@ public :
    void changerComportement(IComportement*);
 
    void draw(UImg & support);
+   void vieillir();
    void actualiserPosition(int xLim, int yLim);
    float distanceEntreBestioles(Bestiole& b);
 

@@ -8,6 +8,7 @@
 
 #include "Yeux.h"
 #include "Oreille.h"
+#include "ComportementKamikaze.h"
 
 #include <iostream>
 
@@ -23,6 +24,7 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
    bestioles = std::vector<Bestiole*>();
    clock = 0;
    aquariumAssocie = aquarium;
+   std::srand(std::time(nullptr));
 }
 
 
@@ -74,26 +76,41 @@ void Milieu::verifierAgeBestiole()
 
 void Milieu::verifierCollision()
 {
+   std::vector<Bestiole*> bestiolesToKill = std::vector<Bestiole*>();
    int tailleVecteur = bestioles.size();
-   for (int i=0; i<=tailleVecteur-1; i=i+1)
+   //On choisit d'abord les bestioles que l'on va tuer (si les conditions sont respectées)
+   for (int i=0; i<tailleVecteur; i=i+1)
    {
       float taille1 = bestioles.at(i) -> getTaille();
-
-      for (int k = i+1; k<= tailleVecteur; k=k+1)
+      bool toKill = false;
+      for (int k = 0; k<tailleVecteur; k=k+1)
       {
-         float taille2 = bestioles.at(k) -> getTaille();
-
-         float distance = bestioles.at(i) -> distanceEntreBestioles(*bestioles.at(k));
-         if (distance < taille1 + taille2)
+         if(k!=i)
          {
-            if (bestioles.at(i) -> mourrirSiCollision()){
-               tuerBestiole(bestioles.at(i));
-            }
-            if (bestioles.at(k) -> mourrirSiCollision()){
-               tuerBestiole(bestioles.at(k));
-            }
-         } 
+            float taille2 = bestioles.at(k) -> getTaille();
+
+            float distance = bestioles.at(i) -> distanceEntreBestioles(*bestioles.at(k));
+            if (distance < taille1 + taille2)
+            {
+               bool p = bestioles.at(i) -> mourrirSiCollision();
+               //std::cout << p << endl;
+               if (p){
+                  toKill = true;
+               }
+            } 
+         }
+         
       }
+
+      if(toKill)
+      {
+         bestiolesToKill.push_back(bestioles.at(i));
+      }
+   }
+   //On tue les bestioles selectionnées précedemment
+   for(long unsigned int i = 0; i< bestiolesToKill.size(); i++)
+   {
+      tuerBestiole(bestiolesToKill.at(i));
    }
 }
 
@@ -199,7 +216,12 @@ void Milieu::step( void )
    for (long unsigned int i = 0 ; i<bestioles.size(); i++)
    {
       bestioles.at(i)->draw( *this );
+      bestioles.at(i)->vieillir();
+      actualiserVoisines();
       bestioles.at(i)->actualiserPosition(width,height);
+      verifierCollision();
+      verifierAgeBestiole();
+      //verifierSiClonage();
    }
 
 }
@@ -208,7 +230,18 @@ void Milieu::ajouterBestioles(int nombre)
 {
    for(int i=0;i<nombre;i++)
    {
-      Bestiole* b = new SimpleBestiole();
+      float camouflage = get<0>(aquariumAssocie->getPlageCamouflage()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageCamouflage()) - get<0>(aquariumAssocie->getPlageCamouflage()));
+      float carapace = aquariumAssocie->getProtectionCarapacemax() * static_cast<float>(std::rand()) / RAND_MAX;
+      float nageoire = aquariumAssocie->getVitesseNageoireMax() * static_cast<float>(std::rand()) / RAND_MAX;
+      float taille = 10;
+      float ageDeces = 1000;
+      float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
+      std::cout << aquariumAssocie->getProbaMaxDecCollision() << "   " << probaDecesCollision << endl;
+      float prrobaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
+      float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
+      float vitesse = 2;//(static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
+      Bestiole* b = new SimpleBestiole(camouflage, carapace, nageoire, taille, ageDeces, probaDecesCollision,prrobaClonage, new ComportementKamikaze(),direction, vitesse);
+      ajouterOreilles(b);
       bestioles.push_back(b);
       b->initCoords(width,height);
    }
