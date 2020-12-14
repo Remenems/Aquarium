@@ -224,7 +224,7 @@ void Bestiole::draw( UImg & support )
 float Bestiole::distanceEntreBestioles(Bestiole& b){
    int dx = x - b.getX();
    int dy = y - b.getY();
-   return sqrt(static_cast<float>(dx*dy + dy*dy));
+   return sqrt(static_cast<float>(dx*dx + dy*dy));
 }
 
 //Accesseurs

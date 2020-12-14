@@ -13,8 +13,8 @@ int main()
    float angleVisionMin = 0.;
    float distanceVisionMax = 10.;
    float distanceVisionMin = 2.;
-   float distanceOuieMin = 3.;
-   float distanceOuieMax = 8.;
+   float distanceOuieMin = 10.;
+   float distanceOuieMax = 25.;
    float capaciteDetectionOuieMin = 0.2; // dans [0,1]
    float capaciteDetectionOuieMax = 0.8;
    float camouflageMin = 0.; // dans [0,1]

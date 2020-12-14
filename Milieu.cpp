@@ -90,7 +90,7 @@ void Milieu::verifierCollision()
             float taille2 = bestioles.at(k) -> getTaille();
 
             float distance = bestioles.at(i) -> distanceEntreBestioles(*bestioles.at(k));
-            if (distance < taille1 + taille2)
+            if (5* distance < taille1 + taille2)
             {
                bool p = bestioles.at(i) -> mourrirSiCollision();
                //std::cout << p << endl;
@@ -234,7 +234,7 @@ void Milieu::ajouterBestioles(int nombre)
       float carapace = aquariumAssocie->getProtectionCarapacemax() * static_cast<float>(std::rand()) / RAND_MAX;
       float nageoire = aquariumAssocie->getVitesseNageoireMax() * static_cast<float>(std::rand()) / RAND_MAX;
       float taille = 10;
-      float ageDeces = 1000;
+      float ageDeces = 10000;
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
       float prrobaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
