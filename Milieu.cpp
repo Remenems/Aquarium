@@ -236,7 +236,6 @@ void Milieu::ajouterBestioles(int nombre)
       float taille = 10;
       float ageDeces = 1000;
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
-      std::cout << aquariumAssocie->getProbaMaxDecCollision() << "   " << probaDecesCollision << endl;
       float prrobaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
       float vitesse = 2;//(static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
