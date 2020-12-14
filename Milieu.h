@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "SimpleBestiole.h"
+#include "Aquarium.h"
 
 using namespace std;
 
@@ -20,12 +21,13 @@ private :
    Clones clones;
    int                     width, height;
    std::vector<Bestiole*>   bestioles;
+   Aquarium* aquariumAssocie;
 
    //Timer: échelle de temps, est incrémenté à chaque step
    int clock;
 
 public :
-   Milieu( int _width, int _height );
+   Milieu( int _width, int _height, Aquarium* aquarium );
    ~Milieu( void );
 
    int getWidth( void ) const { return width; };

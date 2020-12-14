@@ -41,6 +41,16 @@ public :
 
    void run( void );
 
+   std::tuple<float,float> getPlageChampAngulaireVision();
+   std::tuple<float,float> getPlageDistanceVision();
+   std::tuple<float,float> getPlageDistanceOuie();
+   std::tuple<float,float> getPlageCapaciteDetectionOuie();
+   std::tuple<float,float> getPlageCamouflage();
+   float getProtectionCarapacemax();
+   float getVitesseNageoireMax();
+   float getProbaMaxClonage();
+   int getSeuilAvantPeurMax();
+
 };
 
 

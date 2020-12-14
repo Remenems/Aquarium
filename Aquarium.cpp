@@ -18,10 +18,9 @@ Aquarium::Aquarium( int width, int height, int _delay, float angleVisionMax, flo
    vitesseNageoireMax = vitesseNageoiremax;
    probaMaxClonage = probamaxClonage;
    seuilAvantPeurMax = seuilAvantPeurmax;
+   cout << "[Création de l'aquarium]" << endl;
 
-   cout << "const Aquarium" << endl;
-
-   milieu = new Milieu( width, height );
+   milieu = new Milieu( width, height, this );
    assign( *milieu, "Simulation d'ecosysteme - Groupe 6" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
@@ -34,7 +33,7 @@ Aquarium::~Aquarium( void )
 
    delete milieu;
 
-   cout << "dest Aquarium" << endl;
+   cout << "[dest Aquarium]" << endl;
 
 }
 
@@ -62,4 +61,49 @@ void Aquarium::run( void )
 
    } // while
 
+}
+
+std::tuple<float,float> Aquarium::getPlageChampAngulaireVision()
+{
+   return plageChampAngulaireVision;
+}
+
+std::tuple<float,float> Aquarium::getPlageDistanceVision()
+{
+   return plageDistanceVision;
+}
+
+std::tuple<float,float> Aquarium::getPlageDistanceOuie()
+{
+   return plageDistanceOuie;
+}
+
+std::tuple<float,float> Aquarium::getPlageCapaciteDetectionOuie()
+{
+   return plageCapaciteDetectionOuie;
+}
+
+std::tuple<float,float> Aquarium::getPlageCamouflage()
+{
+   return plageCamouflage;
+}
+
+float Aquarium::getProtectionCarapacemax()
+{
+   return protectionCarapacemax;
+}
+
+float Aquarium::getVitesseNageoireMax()
+{
+   return vitesseNageoireMax;
+}
+
+float Aquarium::getProbaMaxClonage()
+{
+   return probaMaxClonage;
+}
+
+int Aquarium::getSeuilAvantPeurMax()
+{
+   return seuilAvantPeurMax;
 }

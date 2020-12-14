@@ -13,7 +13,7 @@
 
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
+Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _height, 1, 3 ),
                                             width(_width), height(_height)
 {
 
@@ -22,6 +22,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
    std::srand( time(NULL) );
    bestioles = std::vector<Bestiole*>();
    clock = 0;
+   aquariumAssocie = aquarium;
 }
 
 
@@ -215,7 +216,9 @@ void Milieu::ajouterBestioles(int nombre)
 
 void Milieu::tuerBestiole(Bestiole* bestiole)
 {
+   //On enlève la bestiole de la liste
    bestioles.erase(remove(bestioles.begin(), bestioles.end(), bestiole), bestioles.end());
+   //On la supprime
    delete bestiole;
 }
 
@@ -233,9 +236,10 @@ void Milieu::ajouterYeux(Bestiole* bestiole)
    //On vérifie si la bestiole a déjà des yeux ou pas
    if(bestiole->aiJeCeCapteur(Oeil) == false)
    {
-      //Ajouter les yeux
-      float angle = M_PI_2; //TODO à changer (angle et distance)
-      float distance = 3;
+      //angle min + [nb aleatoire entre 0 et 1] * (angle max - angle min)
+      float angle = get<0>(aquariumAssocie->getPlageChampAngulaireVision()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageChampAngulaireVision()) - get<0>(aquariumAssocie->getPlageChampAngulaireVision()));
+      //dist min + [nb aleatoire entre 0 et 1] * (distance max - distance min)
+      float distance = get<0>(aquariumAssocie->getPlageDistanceVision()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageDistanceVision()) - get<0>(aquariumAssocie->getPlageDistanceVision()));
       bestiole = new Yeux(bestiole, distance, angle);
    }
 }
@@ -255,22 +259,9 @@ void Milieu::ajouterOreilles(Bestiole* bestiole)
    if(bestiole->aiJeCeCapteur(Oreilles) == false)
    {
       //Ajouter une oreille
-      float distance = 5;
+      //dist min + [nb aleatoire entre 0 et 1] * (distance max - distance min)
+      float distance = get<0>(aquariumAssocie->getPlageDistanceOuie()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageDistanceOuie()) - get<0>(aquariumAssocie->getPlageDistanceOuie()));
       bestiole = new Oreille(bestiole, distance);
    }
 }
 
-
-/*int Milieu::nbVoisins( const Bestiole & b )
-{
-
-   int         nb = 0;
-
-
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b == *it) && b.jeTeVois(*it) )
-         ++nb;
-
-   return nb;
-
-}*/
