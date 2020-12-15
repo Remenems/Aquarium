@@ -16,8 +16,12 @@
 
 static float modulo(float x, float y);
 
+int Bestiole::NB_bestiole = 0;
+
 Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement* comport, float dir, float vit)
 {
+   identity = ++NB_bestiole;
+
    x = 0;
    y = 0;
    cumulX = 0;
@@ -42,10 +46,14 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
    comportement = comport;
+
+   cout << "const Bestiole [" << identity << "]" << endl;
 }
 
 Bestiole::Bestiole()
 {
+   identity = ++NB_bestiole;
+
    x = 0;
    y = 0;
    cumulX = 0;
@@ -94,10 +102,14 @@ Bestiole::Bestiole()
       break;
    }
 
+   cout << "const Bestiole [" << identity << "]" << endl;
+
 }
 
 Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
 {
+   identity = ++NB_bestiole;
+
    x = newx;
    y = newy;
    camouflage = b.getCamouflage();
@@ -139,6 +151,8 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
       comportement = new ComportementMultiple();
       break;
    }
+
+   cout << "const Bestiole [" << identity << "]" << endl;
 }
 
 

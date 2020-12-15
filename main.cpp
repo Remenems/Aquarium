@@ -21,14 +21,14 @@ int main()
    float camouflageMax = 0.;
    float protectionCarapaceMax = 1.; // >1
    float vitesseNageoireMax = 1.; //>1
-   float probaMaxClonage = 1; // dans [0,1]
+   float probaMaxClonage = 0.0005; // dans [0,1]
    int seuilAvantPeurMax = 5;
    float probaMaxDecesCollision = 1; //dans [0,1]
 
 
    Aquarium ecosysteme( 640, 480, 30, angleVisionMax, angleVisionMin, distanceVisionMax, distanceVisionMin, distanceOuieMin, distanceOuieMax, capaciteDetectionOuieMin, capaciteDetectionOuieMax, camouflageMin, camouflageMax, protectionCarapaceMax, vitesseNageoireMax, probaMaxClonage, seuilAvantPeurMax, probaMaxDecesCollision );
 
-   ecosysteme.getMilieu().ajouterBestioles(50);
+   ecosysteme.getMilieu().ajouterBestioles(3);
    ecosysteme.run();
 
    return 0;

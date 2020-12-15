@@ -45,7 +45,10 @@ void Milieu::clonerBestiole(std::vector<Bestiole*> listeBestioles)
    {
       int x = static_cast<int>(static_cast<float>( std::rand() )/RAND_MAX*width);
       int y = static_cast<int>(static_cast<float>( std::rand() )/RAND_MAX*height);
-      Bestiole* nouvelleBestiole = listeBestioles.at(i) -> clone(x, y);
+      //Bestiole* nouvelleBestiole = listeBestioles.at(i) -> clone(x, y);
+      //TODO réparer la méthode clone 
+      Bestiole* nouvelleBestiole = new SimpleBestiole();
+      nouvelleBestiole->initCoords(width/2, height/2);
       bestioles.push_back(nouvelleBestiole);
    }
 }
@@ -221,7 +224,7 @@ void Milieu::step( void )
       bestioles.at(i)->actualiserPosition(width,height);
       verifierCollision();
       verifierAgeBestiole();
-      //verifierSiClonage();
+      verifierSiClonage();
    }
 
 }

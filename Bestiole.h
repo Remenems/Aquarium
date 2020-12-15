@@ -30,6 +30,10 @@ class Bestiole : public IPrototypeBestiole
 //attributs
 private :
 
+   static int NB_bestiole;
+
+   int identity;
+
    //accessoires
    float camouflage;
    float carapace;
