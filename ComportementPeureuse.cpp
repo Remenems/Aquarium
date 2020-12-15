@@ -14,7 +14,7 @@ tuple<float,float> ComportementPeureuse::calculDirection(vector<Bestiole*> voisi
         {
             moyenneDirection += voisins.at(i)->getDirection() / voisins.size();
         }
-        return make_tuple(moyenneDirection + M_PI/* nvelle directon*/, 2);
+        return make_tuple(moyenneDirection + M_PI/* nouvelle directon*/, 2);
     }
     else
     {

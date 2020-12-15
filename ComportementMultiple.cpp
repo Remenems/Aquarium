@@ -37,6 +37,7 @@ tuple<float,float> ComportementMultiple::calculDirection(vector<Bestiole*> voisi
     tempsAvantChangementDeComportement--;
     if(tempsAvantChangementDeComportement<=0)
     {
+        //si c'est le cas on prend un nouveau comportement aléatoirement et on détruit l'ancien
         int choix = rand() % comportements.size();
         comportementActif = comportements.at(choix);
         tempsAvantChangementDeComportement = tempsEntreDeuxChangementsDeComportement;
