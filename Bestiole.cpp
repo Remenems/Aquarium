@@ -20,6 +20,7 @@ int Bestiole::NB_bestiole = 0;
 
 Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement* comport, float dir, float vit)
 {
+   //construction d'une bestiole avec chaqueattribut pris en paramètre de la méthode
    identity = ++NB_bestiole;
 
    x = 0;
@@ -52,6 +53,7 @@ Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float
 
 Bestiole::Bestiole()
 {
+   //construction d'une bestiole avec des paramètres par défault et comportement aléatoire
    identity = ++NB_bestiole;
 
    x = 0;
@@ -77,6 +79,7 @@ Bestiole::Bestiole()
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
+   //choix aléatoire du comportement
    int choix = rand() % 5;
    switch (choix)
    {
@@ -108,6 +111,8 @@ Bestiole::Bestiole()
 
 Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
 {
+   //construction de la bestiole à partir d'une bestiole déjà existante
+   //chaque bestiole à un numéro pour pouvoir être retrouver lors d'un événement extérieur
    identity = ++NB_bestiole;
 
    x = newx;
@@ -158,7 +163,7 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
 
 Bestiole::~Bestiole( void )
 {
-
+   //destruction de la bestiole
    delete[] couleur;
    delete comportement;
 
@@ -169,7 +174,7 @@ Bestiole::~Bestiole( void )
 
 void Bestiole::initCoords( int xLim, int yLim )
 {
-
+   //donne des coordonnées initiales aléatoires à une bestiole
    x = rand() % xLim;
    y = rand() % yLim;
 
@@ -177,6 +182,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 void Bestiole::vieillir()
 {
+   //à chaque tour la bestiole perd une années de vie
    ageDeces-=1;
 }
 
