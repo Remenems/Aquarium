@@ -182,11 +182,13 @@ void Bestiole::vieillir()
 
 void Bestiole::actualiserPosition( int xLim, int yLim )
 {
+   //on va chercher la direction et la vitesse en fonction du comportement de la bestiole et ses voisins
    tuple<float, float> coupleDirectionVitesse = comportement->calculDirection(bestiolesVoisines, *this);//comportement.calculDirection();
    direction = get<0>(coupleDirectionVitesse);
    float vitessePourCeTour = vitesse*get<1>(coupleDirectionVitesse);
 
    double nx, ny;
+   //on calcul le déplacement en x et en y
    double dx = cos( direction )*vitessePourCeTour*nageoire;
    double dy = -sin( direction )*vitessePourCeTour*nageoire;
    int cx, cy;
@@ -198,6 +200,7 @@ void Bestiole::actualiserPosition( int xLim, int yLim )
    nx = x + dx + cx;
    ny = y + dy + cy;
 
+   //on fait la distinction de cas en fonction de si il y a collision
    if ( (nx < 0) || (nx > xLim - 1) ) {
       direction = M_PI - direction;
       cumulX = 0.;
@@ -219,13 +222,14 @@ void Bestiole::actualiserPosition( int xLim, int yLim )
 
 bool Bestiole::mourrirSiCollision()
 {
+   //renvoie en cas de collision un booléen qui dit si la bestioles doit mourrir ou rebondir
    float p = static_cast<float>( rand() )/RAND_MAX;
    return (p < probabiliteDecesCollision);
 }
 
 void Bestiole::draw( UImg & support )
 {
-
+   //dans cette fonction on affiche les bestioles
    double xt = x + cos( direction )*taille/2.1;
    double yt = y - sin( direction )*taille/2.1;
 
@@ -238,10 +242,11 @@ void Bestiole::draw( UImg & support )
 float Bestiole::distanceEntreBestioles(Bestiole& b){
    int dx = x - b.getX();
    int dy = y - b.getY();
+   //pythagore
    return sqrt(static_cast<float>(dx*dx + dy*dy));
 }
 
-//Accesseurs
+//La suite du code concerne les accesseurs pour chaque paramètres
 
 void Bestiole::changerComportement(IComportement* newComp)
 {
