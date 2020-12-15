@@ -40,7 +40,6 @@ public :
    void verifierCollision();
    void repositionnerBestioles();
    void actualiserVoisines();
-   void initialisation(int nombre, std::vector<float> pourcentageComportement);
    void ajouterCarapace(std::vector<Bestiole*> listeBestioles, float coefficient);
    void ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coefficient);
    void ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coefficient);

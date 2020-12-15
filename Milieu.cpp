@@ -18,6 +18,7 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
                                             width(_width), height(_height)
 {
 
+   //on contruit le milieu
    cout << "const Milieu" << endl;
    Clones clones = Clones();
    std::srand( time(NULL) );
@@ -30,6 +31,7 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
 
 Milieu::~Milieu( void )
 {
+   //on détruit le milieu eet les bestioles à l'intérieur
    int s = bestioles.size();
    for(int i =0; i<s;i++)
    {
@@ -55,23 +57,31 @@ void Milieu::clonerBestiole(std::vector<Bestiole*> listeBestioles)
 
 void Milieu::verifierSiClonage(){
    std::vector<Bestiole*> bestiolesClones = std::vector<Bestiole*>();
+
+   //on parcourt l'ensemble des bestioles
    for (long unsigned int i =0; i< bestioles.size(); i++)
    {
       float p = bestioles.at(i) -> getProbabiliteClonage();
       float p2 = static_cast<float>( std::rand() )/RAND_MAX;
+      //pour chaque bestioles on vérifie si elle doit être cloné
       if (p > p2)
       {
+         //si c'est le cas on l'ajout à la liste des bestioles à cloner
          bestiolesClones.push_back(bestioles.at(i));
       }
    }
+   //on clone l'ensemble des bestioles à cloner
    clonerBestiole(bestiolesClones);
 }
 
 void Milieu::verifierAgeBestiole()
 {
+   //on  parcourt l'ensemble des bestioles
    for (long unsigned int i = 0 ; i<bestioles.size(); i++)
    {
+      //pour chaque bestioles, on vérifie si regarde si le nombre d'année à vivre est inférieur à 0
       if (bestioles.at(i) -> getAgeDeces() <= 0){
+         //on tue la bestiole si c'est le cas
          tuerBestiole(bestioles.at(i));
       }
    }
@@ -82,29 +92,41 @@ void Milieu::verifierCollision()
    std::vector<Bestiole*> bestiolesToKill = std::vector<Bestiole*>();
    int tailleVecteur = bestioles.size();
    //On choisit d'abord les bestioles que l'on va tuer (si les conditions sont respectées)
+   //On parcourt l'ensemble des bestioles
    for (int i=0; i<tailleVecteur; i=i+1)
    {
       float taille1 = bestioles.at(i) -> getTaille();
       bool toKill = false;
+      //Pour chaque bestioles on vérifie si elle n'est pas en collision avec chaque autre bestioles
       for (int k = 0; k<tailleVecteur; k=k+1)
       {
+         //on ne compare pas la bestiole avec elle même
          if(k!=i)
          {
             float taille2 = bestioles.at(k) -> getTaille();
 
             float distance = bestioles.at(i) -> distanceEntreBestioles(*bestioles.at(k));
+            //si il y a collision
             if (5* distance < taille1 + taille2)
             {
                bool p = bestioles.at(i) -> mourrirSiCollision();
                //std::cout << p << endl;
+
+               // si elle doit mourrir
                if (p){
                   toKill = true;
+               }
+
+               //si elle ne meurt pas, elle fait demi tour
+               else{
+                  float direction = (bestioles.at(i) -> getDirection()) + M_PI;
+                  bestioles.at(i) -> setDirection(direction);
                }
             } 
          }
          
       }
-
+      //On ajoute la bestiole à la liste des bestioles à tuer
       if(toKill)
       {
          bestiolesToKill.push_back(bestioles.at(i));
@@ -119,12 +141,14 @@ void Milieu::verifierCollision()
 
 void Milieu::repositionnerBestioles()
 {
+   //on repositionne toutes les bestioles
    for (long unsigned int i =0; i< bestioles.size(); i++)
    {
       bestioles.at(i) -> actualiserPosition(width, height);
    }
 }
 
+//vive la trigo
 void Milieu::actualiserVoisines()
 {
    std::vector<tuple<float,float>> zones = std::vector<tuple<float,float>>();
@@ -146,7 +170,7 @@ void Milieu::actualiserVoisines()
             int x2 = bestioles.at(n) -> getX();
             float distance = bestioles.at(i) -> distanceEntreBestioles(*(bestioles.at(n)));
 
-            //Cas 1 : la bestiole sont sur la meme position -> detectée
+            //Cas 1 : la bestiole est sur la meme position que la première-> detectée
             if (distance == 0){voisines.push_back(bestioles.at(n));}
             //Cas 2 : la distance est différente -> on vérifie par zone
             else
@@ -175,13 +199,9 @@ void Milieu::actualiserVoisines()
    }
 }
 
-void Milieu::initialisation(int nombre, std::vector<float> pourcentageComportement)
-{
-   //TODO
-}
-
 void Milieu::ajouterCarapace(std::vector<Bestiole*> listeBestioles, float coefficient)
 {
+   //pour toutes les bestioles de la liste en paramètre on ajoute une carapace
    for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
    {
       listeBestioles.at(i)->changerCarapace(coefficient);
@@ -190,6 +210,7 @@ void Milieu::ajouterCarapace(std::vector<Bestiole*> listeBestioles, float coeffi
 
 void Milieu::ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coefficient)
 {
+   //pour toutes les bestioles de la lsite en paramètres on ajoute un camouflage
    for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
    {
       listeBestioles.at(i)->changerCamouflage(coefficient);
@@ -198,6 +219,7 @@ void Milieu::ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coef
 
 void Milieu::ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coefficient)
 {
+   //pour toutes les bestioles de la liste en paramètres on ajoute une nageoire
    for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
    {
       listeBestioles.at(i)->changerNageoire(coefficient);
@@ -206,6 +228,7 @@ void Milieu::ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coeffi
 
 void Milieu::changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles)
 {
+   //pour toutes les bestioles de la liste en paramètre on change leur comportement en celui mis en paramètre
    for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
    {
       listeBestioles.at(i)-> changerComportement(comportement);
@@ -218,12 +241,20 @@ void Milieu::step( void )
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for (long unsigned int i = 0 ; i<bestioles.size(); i++)
    {
+      //à chaque étape :
+      //on affiche les bestioles
       bestioles.at(i)->draw( *this );
+      //on diminue leur durée de vie restantes
       bestioles.at(i)->vieillir();
+      //on regarde si elles détectent d'autres bestioles
       actualiserVoisines();
+      //on les place à leur nouvelle position
       bestioles.at(i)->actualiserPosition(width,height);
+      //on vérifie après si elle n'entre pas en collision avec une autre bestiole
       verifierCollision();
+      //on regarde si elles ne ne sont pas mortes
       verifierAgeBestiole();
+      //on regarde si elle doit être cloné
       verifierSiClonage();
    }
 
@@ -239,10 +270,10 @@ void Milieu::ajouterBestioles(int nombre)
       float taille = 10;
       float ageDeces = 10000;
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
-      float prrobaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
+      float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
       float vitesse = 2;//(static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
-      Bestiole* b = new SimpleBestiole(camouflage, carapace, nageoire, taille, ageDeces, probaDecesCollision,prrobaClonage, new ComportementKamikaze(),direction, vitesse);
+      Bestiole* b = new SimpleBestiole(camouflage, carapace, nageoire, taille, ageDeces, probaDecesCollision,probaClonage, new ComportementKamikaze(),direction, vitesse);
       ajouterOreilles(b);
       bestioles.push_back(b);
       b->initCoords(width,height);
