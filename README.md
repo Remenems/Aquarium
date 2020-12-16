@@ -12,8 +12,12 @@ lancer `make mainKamikaze` puis `./mainKamikaze`
 # mainPeureuse:
 lancer `make mainPeureuse` puis `./mainPeureuse`
 
+Le bestioles se fuient quand elles se croisent
+
 # mainYeux:
 lancer `make mainYeux` puis `./mainYeux`
+
+Les bestioles réagissent quand elles sont proches et de face
 
 # mainGregaire:
 lancer `make mainGregaire` puis `./mainGregaire`
