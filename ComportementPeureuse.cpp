@@ -26,7 +26,7 @@ tuple<float,float> ComportementPeureuse::calculDirection(vector<Bestiole*> voisi
 
     if(voisins.size() >= seuilAvantPeur)
     {
-        cout << "je suis ici" <<endl;
+
         //La bestiole change de direction, va dans la direction opposée aux bestioles voisines, à une vitesse x2
         float moyenneDirection = 0;
         for(long unsigned int i = 0; i<voisins.size(); i++)
