@@ -1,3 +1,8 @@
+##Environnement de base
+main : main.cpp Aquarium.o Comportements Bestiole.o Milieu.o Capteurs Clones.o
+	g++ -Wall -std=c++11 -o main main.cpp Bestiole.o Aquarium.o Milieu.o Clones.o ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o SimpleBestiole.o Oreille.o Yeux.o -I . -lX11 -lpthread
+
+
 ##test sur la collision
 mainCollision : mainCollision.cpp Aquarium.o Comportements Bestiole.o Milieu.o Capteurs Clones.o
 	g++ -Wall -std=c++11 -o mainCollision mainCollision.cpp Bestiole.o Aquarium.o Milieu.o Clones.o ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o SimpleBestiole.o Oreille.o Yeux.o -I . -lX11 -lpthread

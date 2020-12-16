@@ -22,7 +22,7 @@ int main()
    float camouflageMax = 0.;
    float protectionCarapaceMax = 1.; // >1
    float vitesseNageoireMax = 1.; //>1
-   float probaMaxClonage = 0.0005; // dans [0,1]
+   float probaMaxClonage = 0; // dans [0,1]
    int seuilAvantPeurMax = 5;
    float probaMaxDecesCollision = 1; //dans [0,1]
 

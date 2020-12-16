@@ -297,6 +297,7 @@ void Milieu::ajouterBestioles(int nombre)
       float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 1. + 1;
 
       Bestiole* b = new SimpleBestiole(0,1,1,10,1000,probaDecesCollision,probaClonage,new ComportementPrevoyante(),direction, vitesse);
+      b->initCoords(width, height);
       /*b -> setProbabiliteDecesCollision(probaDecesCollision);
       b -> setProbabiliteClonage(probaClonage);
       b -> setDirection(direction);
