@@ -12,10 +12,10 @@ int main()
 {
    float angleVisionMax = M_PI;
    float angleVisionMin = 0.;
-   float distanceVisionMax = 10.;
-   float distanceVisionMin = 2.;
-   float distanceOuieMin = 10.;
-   float distanceOuieMax = 25.;
+   float distanceVisionMax = 100.;
+   float distanceVisionMin = 50.;
+   float distanceOuieMin = 30.;
+   float distanceOuieMax = 60.;
    float capaciteDetectionOuieMin = 0.2; // dans [0,1]
    float capaciteDetectionOuieMax = 0.8;
    float camouflageMin = 0.; // dans [0,1]
