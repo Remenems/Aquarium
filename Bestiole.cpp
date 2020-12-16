@@ -20,7 +20,7 @@ int Bestiole::NB_bestiole = 0;
 
 Bestiole::Bestiole(float cam, float car, float nag, float tai, int aDeces, float probaDecesCollision, float probaClonage, IComportement* comport, float dir, float vit)
 {
-   //construction d'une bestiole avec chaqueattribut pris en paramètre de la méthode
+   //construction d'une bestiole avec chaque attribut pris en paramètre de la méthode
    identity = ++NB_bestiole;
 
    x = 0;
@@ -132,10 +132,12 @@ Bestiole::Bestiole( const Bestiole & b , int newx, int newy)
    memcpy( couleur, b.couleur, 3*sizeof(T) );
 
    bestiolesVoisines = vector<Bestiole*>();
+   int seuil;
 
    switch (b.comportement->getComportementType())
    {
    case PEUR:
+      seuil = ((ComportementPeureuse*) b.comportement) -> getSeuil();
       comportement = new ComportementPeureuse();
       break;
    

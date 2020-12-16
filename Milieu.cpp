@@ -257,7 +257,6 @@ void Milieu::step( void )
       //on regarde si elle doit être cloné
       verifierSiClonage();
    }
-
 }
 
 void Milieu::ajouterBestioles(int nombre)
@@ -295,7 +294,7 @@ void Milieu::ajouterBestioles(int nombre)
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
       float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
-      float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 4. + 1;
+      float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 1. + 1;
 
       Bestiole* b = new SimpleBestiole(0,1,1,10,1000,probaDecesCollision,probaClonage,new ComportementPrevoyante(),direction, vitesse);
       /*b -> setProbabiliteDecesCollision(probaDecesCollision);
@@ -361,9 +360,6 @@ void Milieu::ajouterOreilles(Bestiole* bestiole)
       {
          if(bestioles.at(i)->getIdentity() == bestiole->getIdentity())
          {
-            /*bestioles.erase(bestioles.begin() + i);
-            cout << "ajout d'oreille en cours" << endl;
-            bestioles.insert(bestioles.begin() + i, new Oreille(bestiole, distance));*/
             Bestiole* newb = new Oreille(bestiole, distance);
             bestioles.at(i) = newb;
          }

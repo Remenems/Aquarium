@@ -39,11 +39,13 @@ tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisi
                 minIndex = i;
             }
         }
+        float direction;
         //retourne la direction pour atteindre la bestiole la plus proche, et une vitesse x3
         float diffY = voisins.at(minIndex)->getY() - bestioleAssociee.getY();
         float diffX = voisins.at(minIndex)->getX() - bestioleAssociee.getX();
         //on cherche à atteindre la position actuelle de la bestiole sans prévoir ces prochains déplacements
-        float direction = (diffX==0)? M_PI/2 : atan(diffY / diffX) ;
+        if (diffY < 0){direction = (diffX==0)? M_PI/2 : M_PI - atan(diffY / diffX) ;}
+        else {direction = (diffX==0)? M_PI/2 : atan(diffY / diffX) ;}
         return make_tuple(direction,coefficientFonce);
     }
 }

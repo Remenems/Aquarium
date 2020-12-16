@@ -1,7 +1,7 @@
 #include "Aquarium.h"
 #include "Milieu.h"
 #include "Bestiole.h"
-#include "ComportementKamikaze.h"
+#include "ComportementPeureuse.h"
 
 #include <iostream>
 
@@ -38,18 +38,14 @@ int main()
    bestioles.at(0) -> setDirection(M_PI);
    bestioles.at(0) -> setProbabiliteDecesCollision(0.5);
 
-   bestioles.at(1) -> setX(300);
-   bestioles.at(1) -> setY(120);
-   bestioles.at(1) -> setDirection(0);
+   bestioles.at(1) -> setX(200);
+   bestioles.at(1) -> setY(200);
+   bestioles.at(1) -> setDirection(-M_PI / 2);
    bestioles.at(1) -> setProbabiliteDecesCollision(0.5);
-   
-   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(0));
-   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(1));
+
+   milieu.changerComportement(new ComportementPeureuse(1), bestioles.at(0));
+   milieu.changerComportement(new ComportementPeureuse(1), bestioles.at(1));
    milieu.ajouterOreilles(bestioles);
-   if(bestioles.at(0)->aiJeCeCapteur(Oreilles))
-   {
-      cout << "jai des oreilles" << endl;
-   }
 
    ecosysteme.run();
 
