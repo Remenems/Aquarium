@@ -335,7 +335,14 @@ void Milieu::ajouterYeux(Bestiole* bestiole)
       float angle = get<0>(aquariumAssocie->getPlageChampAngulaireVision()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageChampAngulaireVision()) - get<0>(aquariumAssocie->getPlageChampAngulaireVision()));
       //dist min + [nb aleatoire entre 0 et 1] * (distance max - distance min)
       float distance = get<0>(aquariumAssocie->getPlageDistanceVision()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageDistanceVision()) - get<0>(aquariumAssocie->getPlageDistanceVision()));
-      bestiole = new Yeux(bestiole, distance, angle);
+      for(long unsigned int i= 0; i< bestioles.size(); i++)
+      {
+         if(bestioles.at(i)->getIdentity() == bestiole->getIdentity())
+         {
+            Bestiole* newb = new Yeux(bestiole, distance, angle);
+            bestioles.at(i) = newb;
+         }
+      }
    }
 }
 
