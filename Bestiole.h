@@ -66,7 +66,7 @@ public :
    Bestiole(const Bestiole& bestiole, int x, int y);
    virtual ~Bestiole( void );
 
-   virtual Bestiole* clone(int x, int y) = 0; // clone la bestiole et la positionne à la position (x,y)
+   virtual Bestiole* clone() = 0; 
 
    void initCoords( int xLim, int yLim );
 

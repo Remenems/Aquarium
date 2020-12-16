@@ -10,7 +10,7 @@ class Yeux : public CapteurDecorator
     public:
         Yeux(Bestiole* bestiole, float distance, float angle);
         ~Yeux();
-        Bestiole* clone(int x, int y);
+        Bestiole* clone();
         vector<tuple<float,float>> detecter();
         bool aiJeCeCapteur(CapteurType type);
 };

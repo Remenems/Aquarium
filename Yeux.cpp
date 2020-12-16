@@ -12,9 +12,9 @@ Yeux::~Yeux()
     delete bestioleDecoreePtr;
 }
         
-Bestiole* Yeux::clone(int x, int y)
+Bestiole* Yeux::clone()
 {
-    Bestiole* bClone = bestioleDecoreePtr->clone(x,y);
+    Bestiole* bClone = bestioleDecoreePtr->clone();
     return new Yeux(bClone, distanceVision, champAngulaire);
     
 }

@@ -18,7 +18,7 @@ class Milieu : public UImg
 
 private :
    static const T          white[];
-   Clones clones;
+   Clones* clones;
    int                     width, height;
    std::vector<Bestiole*>   bestioles;
    Aquarium* aquariumAssocie;

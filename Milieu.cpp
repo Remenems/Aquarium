@@ -9,6 +9,10 @@
 #include "Yeux.h"
 #include "Oreille.h"
 #include "ComportementKamikaze.h"
+#include "ComportementGregaire.h"
+#include "ComportementMultiple.h"
+#include "ComportementPrevoyante.h"
+#include "ComportementPeureuse.h"
 
 #include <iostream>
 
@@ -20,7 +24,7 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
 
    //on contruit le milieu
    cout << "const Milieu" << endl;
-   Clones clones = Clones();
+   Clones* clones = new Clones();
    std::srand( time(NULL) );
    bestioles = std::vector<Bestiole*>();
    clock = 0;
@@ -37,6 +41,8 @@ Milieu::~Milieu( void )
    {
       delete bestioles.at(i);
    }
+   //on détruit les clones
+   delete clones;
    cout << "dest Milieu" << endl;
 
 }
@@ -148,7 +154,6 @@ void Milieu::repositionnerBestioles()
    }
 }
 
-//vive la trigo
 void Milieu::actualiserVoisines()
 {
    std::vector<tuple<float,float>> zones = std::vector<tuple<float,float>>();
@@ -264,19 +269,52 @@ void Milieu::ajouterBestioles(int nombre)
 {
    for(int i=0;i<nombre;i++)
    {
-      float camouflage = get<0>(aquariumAssocie->getPlageCamouflage()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageCamouflage()) - get<0>(aquariumAssocie->getPlageCamouflage()));
-      float carapace = aquariumAssocie->getProtectionCarapacemax() * static_cast<float>(std::rand()) / RAND_MAX;
-      float nageoire = aquariumAssocie->getVitesseNageoireMax() * static_cast<float>(std::rand()) / RAND_MAX;
-      float taille = 10;
-      float ageDeces = 10000;
+      IComportement* comportement;
+
+      //choix aléatoire du comportement
+      int choix = std::rand() % 5;
+      Bestiole* b;
+      switch (choix)
+         {
+         case 0:
+            comportement = new ComportementPeureuse();
+            b = (clones -> getPeureuse()) -> clone();
+            break;
+         
+         case 1:
+            comportement = new ComportementPrevoyante();
+            b = (clones -> getPrevoyante()) -> clone();
+            break;
+
+         case 2:
+            comportement = new ComportementKamikaze();
+            b = (clones -> getKamikaze()) -> clone();
+            break;
+
+         case 3:
+            comportement = new ComportementGregaire();
+            b = (clones -> getGregaire()) -> clone();
+            break;
+
+         case 4:   
+         default:
+            comportement = new ComportementMultiple();
+            b = (clones -> getMultiple()) -> clone();
+            break;
+         }
+
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
       float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
-      float vitesse = 2;//(static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
-      Bestiole* b = new SimpleBestiole(camouflage, carapace, nageoire, taille, ageDeces, probaDecesCollision,probaClonage, new ComportementKamikaze(),direction, vitesse);
-      ajouterOreilles(b);
-      bestioles.push_back(b);
+      float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
+      
+      b -> setProbabiliteDecesCollision(probaDecesCollision);
+      b -> setProbabiliteClonage(probaClonage);
+      b -> setDirection(direction);
+      b -> setVitesse(vitesse);
       b->initCoords(width,height);
+
+      bestioles.push_back(b);
    }
 }
 

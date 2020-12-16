@@ -8,11 +8,11 @@
 
 Clones::Clones()
 {
-    bestioleGregaire = new SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementGregaire(), M_PI, 2);
-    bestiolePeureuse = new SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementPeureuse(), M_PI, 2);
-    bestioleKamikaze = new SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementKamikaze(), M_PI, 2);
-    bestiolePrevoyante = new SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementPrevoyante(), M_PI, 2);
-    bestioleMultiple = new SimpleBestiole(0, 1, 1, 1, 100, 0.5, 0.005, new ComportementMultiple(), M_PI, 2);
+    bestioleGregaire = new SimpleBestiole(0, 1, 1, 10, 10000, 0.5, 0.005, new ComportementGregaire(), M_PI, 2);
+    bestiolePeureuse = new SimpleBestiole(0, 1, 1, 10, 10000, 0.5, 0.005, new ComportementPeureuse(), M_PI, 2);
+    bestioleKamikaze = new SimpleBestiole(0, 1, 1, 10, 10000, 0.5, 0.005, new ComportementKamikaze(), M_PI, 2);
+    bestiolePrevoyante = new SimpleBestiole(0, 1, 10, 1, 10000, 0.5, 0.005, new ComportementPrevoyante(), M_PI, 2);
+    bestioleMultiple = new SimpleBestiole(0, 1, 1, 10, 10000, 0.5, 0.005, new ComportementMultiple(), M_PI, 2);
 }
 
 Clones::~Clones()

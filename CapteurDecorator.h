@@ -10,7 +10,7 @@ class CapteurDecorator : public Bestiole
     public:
         CapteurDecorator(Bestiole* bestiole) : bestioleDecoreePtr(bestiole) {} ;
         ~CapteurDecorator() { delete bestioleDecoreePtr; };
-        virtual Bestiole* clone(int x, int y) = 0;
+        virtual Bestiole* clone() = 0;
         virtual vector<tuple<float,float>> detecter() = 0;
         virtual bool aiJeCeCapteur(CapteurType type) = 0;
 };

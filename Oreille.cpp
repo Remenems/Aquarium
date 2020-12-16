@@ -11,9 +11,9 @@ Oreille::~Oreille()
     delete bestioleDecoreePtr;
 }
         
-Bestiole* Oreille::clone(int x, int y)
+Bestiole* Oreille::clone()
 {
-    Bestiole* bClone = bestioleDecoreePtr->clone(x,y);
+    Bestiole* bClone = bestioleDecoreePtr->clone();
     return new Oreille(bClone, distanceOuie);
 }
 
