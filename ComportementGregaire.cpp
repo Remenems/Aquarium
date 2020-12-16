@@ -37,6 +37,4 @@ tuple<float,float> ComportementGregaire::calculDirection(vector<Bestiole*> voisi
         // Retourne la direction moyenne, et une vitesse x1
         return make_tuple(moyenne,1);
     }
-    
-    
 }
