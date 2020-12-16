@@ -18,6 +18,7 @@ ComportementMultiple::ComportementMultiple() : IComportement()
     comportementActif = comportements.at(choix);
     //Initialisation du temps avant changement
     tempsAvantChangementDeComportement = tempsEntreDeuxChangementsDeComportement;
+    cout << "cons Comportement MULTI" << endl;
 }
 
 ComportementMultiple::~ComportementMultiple()
@@ -27,6 +28,7 @@ ComportementMultiple::~ComportementMultiple()
     {
         delete comportements.at(i);
     }
+    cout << "des Comportement MULTI" << endl;
     //comportementActif est déjà détruit
 }
 

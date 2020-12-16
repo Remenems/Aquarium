@@ -167,10 +167,9 @@ Bestiole::~Bestiole( void )
    delete[] couleur;
    delete comportement;
 
-   cout << "dest Bestiole" << endl;
+   cout << "dest Bestiole [" << identity << "]" << endl;
 
 }
-
 
 void Bestiole::initCoords( int xLim, int yLim )
 {

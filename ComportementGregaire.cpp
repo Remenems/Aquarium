@@ -6,7 +6,12 @@ using namespace std;
 
 ComportementGregaire::ComportementGregaire() : IComportement()
 {
+    cout << "cons comp GREG" << endl;
+}
 
+ComportementGregaire::~ComportementGregaire()
+{
+    cout << "dest Comportement GREG" << endl;
 }
 
 tuple<float,float> ComportementGregaire::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)

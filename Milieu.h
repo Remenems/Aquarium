@@ -18,7 +18,7 @@ class Milieu : public UImg
 
 private :
    static const T          white[];
-   Clones* clones;
+   //Clones* clones;
    int                     width, height;
    std::vector<Bestiole*>   bestioles;
    Aquarium* aquariumAssocie;
@@ -43,7 +43,7 @@ public :
    void ajouterCarapace(std::vector<Bestiole*> listeBestioles, float coefficient);
    void ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coefficient);
    void ajouterCamouflage(std::vector<Bestiole*> listeBestioles, float coefficient);
-   void changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles);
+   void changerComportement(IComportement* comportement, Bestiole* bestiole);
    void ajouterYeux(std::vector<Bestiole*> listeBestioles);
    void ajouterYeux(Bestiole* bestiole);
    void ajouterOreilles(std::vector<Bestiole*> listeBestioles);

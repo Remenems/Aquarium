@@ -37,8 +37,10 @@ int main()
    bestioles.at(0) -> setY(100);
    bestioles.at(0) -> setDirection(0);
    bestioles.at(0) -> setProbabiliteDecesCollision(0);
-   milieu.changerComportement(new ComportementKamikaze(), bestioles);
-   milieu.ajouterOreilles(bestioles);
+   
+   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(0));
+   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(1));
+   //milieu.ajouterOreilles(bestioles);
 
    bestioles.at(1) -> setX(200);
    bestioles.at(1) -> setY(120);

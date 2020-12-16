@@ -7,6 +7,16 @@ using namespace std;
 
 const int ComportementKamikaze::coefficientFonce = 3;
 
+ComportementKamikaze::ComportementKamikaze() : IComportement()
+{
+    cout << "cons Comportement KAMIK" << endl;
+}
+
+ComportementKamikaze::~ComportementKamikaze()
+{
+    cout << "dest Comportement KAMIK" << endl;
+}
+
 tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee)
 {
     //si pas de voisins détectés, on ne change ni la direction ni la vitesse

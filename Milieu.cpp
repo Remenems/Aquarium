@@ -24,7 +24,7 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
 
    //on contruit le milieu
    cout << "const Milieu" << endl;
-   clones = new Clones();
+   //clones = new Clones();
    std::srand( time(NULL) );
    bestioles = std::vector<Bestiole*>();
    clock = 0;
@@ -35,14 +35,14 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
 
 Milieu::~Milieu( void )
 {
+   //on détruit les clones
+   //delete clones;
    //on détruit le milieu eet les bestioles à l'intérieur
    int s = bestioles.size();
    for(int i =0; i<s;i++)
    {
-      delete bestioles.at(i);
+      tuerBestiole(bestioles.at(s-i-1));
    }
-   //on détruit les clones
-   delete clones;
    cout << "dest Milieu" << endl;
 
 }
@@ -229,13 +229,10 @@ void Milieu::ajouterNageoire(std::vector<Bestiole*> listeBestioles, float coeffi
    }
 }
 
-void Milieu::changerComportement(IComportement* comportement, std::vector<Bestiole*> listeBestioles)
+void Milieu::changerComportement(IComportement* comportement, Bestiole* bestiole)
 {
    //pour toutes les bestioles de la liste en paramètre on change leur comportement en celui mis en paramètre
-   for (long unsigned int i = 0 ; i<listeBestioles.size(); i++)
-   {
-      listeBestioles.at(i)-> changerComportement(comportement);
-   }
+   bestiole -> changerComportement(comportement);
 }
 
 void Milieu::step( void )
@@ -269,7 +266,7 @@ void Milieu::ajouterBestioles(int nombre)
    {
 
       //choix aléatoire du comportement
-      int choix = std::rand() % 5;
+      /*int choix = std::rand() % 5;
       Bestiole* b;
       switch (choix)
          {
@@ -293,18 +290,19 @@ void Milieu::ajouterBestioles(int nombre)
          default:
             b = (clones -> getMultiple()) -> clone();
             break;
-         }
+         }*/
 
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
       float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
       float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 4. + 1;
 
-      b -> setProbabiliteDecesCollision(probaDecesCollision);
+      Bestiole* b = new SimpleBestiole(0,1,1,10,1000,probaDecesCollision,probaClonage,new ComportementPrevoyante(),direction, vitesse);
+      /*b -> setProbabiliteDecesCollision(probaDecesCollision);
       b -> setProbabiliteClonage(probaClonage);
       b -> setDirection(direction);
       b -> setVitesse(vitesse);
-      b->initCoords(width,height);
+      b->initCoords(width,height);*/
 
       bestioles.push_back(b);
    }
@@ -312,10 +310,12 @@ void Milieu::ajouterBestioles(int nombre)
 
 void Milieu::tuerBestiole(Bestiole* bestiole)
 {
-   //On enlève la bestiole de la liste
-   bestioles.erase(remove(bestioles.begin(), bestioles.end(), bestiole), bestioles.end());
    //On la supprime
    delete bestiole;
+   //On enlève la bestiole de la liste
+   bestioles.erase(remove(bestioles.begin(), bestioles.end(), bestiole), bestioles.end());
+   
+   cout << "il reste " << bestioles.size() <<" bestioles"<< endl;
 }
 
 void Milieu::ajouterYeux(std::vector<Bestiole*> listeBestioles)

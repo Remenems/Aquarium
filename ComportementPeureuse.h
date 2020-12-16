@@ -10,7 +10,8 @@ using namespace std;
 class ComportementPeureuse : public IComportement
 {
     public:
-        ComportementPeureuse() : IComportement(){};
+        ComportementPeureuse();
+        ~ComportementPeureuse();
         tuple<float,float> calculDirection(vector<Bestiole*> voisins, Bestiole& bestioleAssociee);
         ComportType getComportementType() { return PEUR; };
     private:

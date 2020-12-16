@@ -11,7 +11,7 @@ SimpleBestiole::SimpleBestiole(float camouflage, float carapace, float nageoire,
 }
 
 SimpleBestiole::SimpleBestiole(const Bestiole& bestiole)
-: Bestiole(bestiole)
+: Bestiole(bestiole, 0,0)
 {
     
 }
