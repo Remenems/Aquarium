@@ -8,7 +8,7 @@ Oreille::Oreille(Bestiole* bestiole, float distance) : CapteurDecorator(bestiole
 
 Oreille::~Oreille()
 {
-    //delete bestioleDecoreePtr;
+    
 }
         
 Bestiole* Oreille::clone()

@@ -9,7 +9,7 @@ Yeux::Yeux(Bestiole* bestiole, float distance, float angle) : CapteurDecorator(b
 
 Yeux::~Yeux()
 {
-    delete bestioleDecoreePtr;
+    
 }
         
 Bestiole* Yeux::clone()
