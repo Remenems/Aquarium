@@ -51,6 +51,7 @@ public :
    void afficherBestiole();
    void tuerBestiole(Bestiole* bestiole);
    void ajouterBestioles(int nombre);
+   std::vector<Bestiole*> getBestioles();
 };
 
 

@@ -256,6 +256,7 @@ float Bestiole::distanceEntreBestioles(Bestiole& b){
 
 void Bestiole::changerComportement(IComportement* newComp)
 {
+   delete comportement;
    comportement = newComp;
 }
 

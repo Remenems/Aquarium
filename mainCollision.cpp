@@ -27,8 +27,31 @@ int main()
 
 
    Aquarium ecosysteme( 640, 480, 30, angleVisionMax, angleVisionMin, distanceVisionMax, distanceVisionMin, distanceOuieMin, distanceOuieMax, capaciteDetectionOuieMin, capaciteDetectionOuieMax, camouflageMin, camouflageMax, protectionCarapaceMax, vitesseNageoireMax, probaMaxClonage, seuilAvantPeurMax, probaMaxDecesCollision );
+   
+   Milieu& milieu = ecosysteme.getMilieu();
+   milieu.ajouterBestioles(4);
+   std::vector<Bestiole*> bestioles = milieu.getBestioles();
 
-   ecosysteme.getMilieu().ajouterBestioles(3);
+   bestioles.at(0) -> setX(100);
+   bestioles.at(0) -> setY(100);
+   bestioles.at(0) -> setDirection(0);
+   bestioles.at(0) -> setProbabiliteDecesCollision(0);
+
+   bestioles.at(1) -> setX(200);
+   bestioles.at(1) -> setY(100);
+   bestioles.at(1) -> setDirection(M_PI);
+   bestioles.at(1) -> setProbabiliteDecesCollision(0);
+
+   bestioles.at(2) -> setX(100);
+   bestioles.at(2) -> setY(200);
+   bestioles.at(2) -> setDirection(0);
+   bestioles.at(2) -> setProbabiliteDecesCollision(1);
+
+   bestioles.at(3) -> setX(200);
+   bestioles.at(3) -> setY(200);
+   bestioles.at(3) -> setDirection(M_PI);
+   bestioles.at(3) -> setProbabiliteDecesCollision(1);
+
    ecosysteme.run();
 
    return 0;

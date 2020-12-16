@@ -298,7 +298,7 @@ void Milieu::ajouterBestioles(int nombre)
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
       float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
-      float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
+      float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 4. + 1;
 
       b -> setProbabiliteDecesCollision(probaDecesCollision);
       b -> setProbabiliteClonage(probaClonage);
@@ -359,5 +359,10 @@ void Milieu::ajouterOreilles(Bestiole* bestiole)
       float distance = get<0>(aquariumAssocie->getPlageDistanceOuie()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageDistanceOuie()) - get<0>(aquariumAssocie->getPlageDistanceOuie()));
       bestiole = new Oreille(bestiole, distance);
    }
+}
+
+std::vector<Bestiole*> Milieu::getBestioles()
+{
+   return bestioles;
 }
 
