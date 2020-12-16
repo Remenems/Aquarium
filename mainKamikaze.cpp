@@ -36,16 +36,20 @@ int main()
    bestioles.at(0) -> setX(100);
    bestioles.at(0) -> setY(100);
    bestioles.at(0) -> setDirection(0);
-   bestioles.at(0) -> setProbabiliteDecesCollision(0);
-   
-   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(0));
-   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(1));
-   //milieu.ajouterOreilles(bestioles);
+   bestioles.at(0) -> setProbabiliteDecesCollision(0.5);
 
    bestioles.at(1) -> setX(200);
    bestioles.at(1) -> setY(120);
    bestioles.at(1) -> setDirection(M_PI);
-   bestioles.at(1) -> setProbabiliteDecesCollision(0);
+   bestioles.at(1) -> setProbabiliteDecesCollision(0.5);
+   
+   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(0));
+   milieu.changerComportement(new ComportementKamikaze(), bestioles.at(1));
+   milieu.ajouterOreilles(bestioles);
+   if(bestioles.at(0)->aiJeCeCapteur(Oreilles))
+   {
+      cout << "jai des oreilles" << endl;
+   }
 
    ecosysteme.run();
 

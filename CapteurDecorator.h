@@ -8,7 +8,7 @@ class CapteurDecorator : public Bestiole
         Bestiole* bestioleDecoreePtr;
 
     public:
-        CapteurDecorator(Bestiole* bestiole) : bestioleDecoreePtr(bestiole) {} ;
+        CapteurDecorator(Bestiole* bestiole) : bestioleDecoreePtr(bestiole), Bestiole(*bestiole, bestiole -> getX(), bestiole -> getY()) {} ;
         ~CapteurDecorator() { delete bestioleDecoreePtr; };
         virtual Bestiole* clone() = 0;
         virtual vector<tuple<float,float>> detecter() = 0;

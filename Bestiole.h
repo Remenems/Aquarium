@@ -121,6 +121,9 @@ public :
    T* getCouleur() const;
    void setCouleur(T* couleur);
 
+   //acc identité
+   int getIdentity();
+
 };
 
 

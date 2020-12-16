@@ -363,6 +363,11 @@ void Bestiole::changerCarapace(float c){
    carapace = c;
 }
 
+int Bestiole::getIdentity()
+{
+   return identity;
+}
+
  // modulo
 static float modulo(float x, float y) //y>0
 {
@@ -384,3 +389,4 @@ static float modulo(float x, float y) //y>0
       return modulo(x+y,y);
    }
 }
+

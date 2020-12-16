@@ -154,11 +154,11 @@ void Milieu::repositionnerBestioles()
 
 void Milieu::actualiserVoisines()
 {
-   std::vector<tuple<float,float>> zones = std::vector<tuple<float,float>>();
+   std::vector<tuple<float,float>> zones;
    for (long unsigned int i =0 ; i<bestioles.size();i++)
    {
       //On récupère la "zone" de détection de la bestiole
-      zones = bestioles.at(i) -> detecter();      
+      zones = bestioles.at(i) -> detecter();
       std::vector<Bestiole*> voisines = std::vector<Bestiole*>();
       
       int x1 = bestioles.at(i) -> getX();
@@ -357,7 +357,17 @@ void Milieu::ajouterOreilles(Bestiole* bestiole)
       //Ajouter une oreille
       //dist min + [nb aleatoire entre 0 et 1] * (distance max - distance min)
       float distance = get<0>(aquariumAssocie->getPlageDistanceOuie()) + static_cast<float>(std::rand()) / RAND_MAX * (get<1>(aquariumAssocie->getPlageDistanceOuie()) - get<0>(aquariumAssocie->getPlageDistanceOuie()));
-      bestiole = new Oreille(bestiole, distance);
+      for(long unsigned int i= 0; i< bestioles.size(); i++)
+      {
+         if(bestioles.at(i)->getIdentity() == bestiole->getIdentity())
+         {
+            /*bestioles.erase(bestioles.begin() + i);
+            cout << "ajout d'oreille en cours" << endl;
+            bestioles.insert(bestioles.begin() + i, new Oreille(bestiole, distance));*/
+            Bestiole* newb = new Oreille(bestiole, distance);
+            bestioles.at(i) = newb;
+         }
+      }
    }
 }
 
