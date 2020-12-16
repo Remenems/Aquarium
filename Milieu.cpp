@@ -24,7 +24,7 @@ Milieu::Milieu( int _width, int _height, Aquarium* aquarium ) : UImg( _width, _h
 
    //on contruit le milieu
    cout << "const Milieu" << endl;
-   Clones* clones = new Clones();
+   clones = new Clones();
    std::srand( time(NULL) );
    bestioles = std::vector<Bestiole*>();
    clock = 0;
@@ -51,12 +51,10 @@ void Milieu::clonerBestiole(std::vector<Bestiole*> listeBestioles)
 {
    for (long unsigned int i = 0; i<listeBestioles.size();i++)
    {
-      int x = static_cast<int>(static_cast<float>( std::rand() )/RAND_MAX*width);
-      int y = static_cast<int>(static_cast<float>( std::rand() )/RAND_MAX*height);
       //Bestiole* nouvelleBestiole = listeBestioles.at(i) -> clone(x, y);
       //TODO réparer la méthode clone 
       Bestiole* nouvelleBestiole = new SimpleBestiole();
-      nouvelleBestiole->initCoords(width/2, height/2);
+      nouvelleBestiole->initCoords(width, height);
       bestioles.push_back(nouvelleBestiole);
    }
 }
@@ -269,7 +267,6 @@ void Milieu::ajouterBestioles(int nombre)
 {
    for(int i=0;i<nombre;i++)
    {
-      IComportement* comportement;
 
       //choix aléatoire du comportement
       int choix = std::rand() % 5;
@@ -277,28 +274,23 @@ void Milieu::ajouterBestioles(int nombre)
       switch (choix)
          {
          case 0:
-            comportement = new ComportementPeureuse();
             b = (clones -> getPeureuse()) -> clone();
             break;
          
          case 1:
-            comportement = new ComportementPrevoyante();
             b = (clones -> getPrevoyante()) -> clone();
             break;
 
          case 2:
-            comportement = new ComportementKamikaze();
             b = (clones -> getKamikaze()) -> clone();
             break;
 
          case 3:
-            comportement = new ComportementGregaire();
             b = (clones -> getGregaire()) -> clone();
             break;
 
          case 4:   
          default:
-            comportement = new ComportementMultiple();
             b = (clones -> getMultiple()) -> clone();
             break;
          }
@@ -307,7 +299,7 @@ void Milieu::ajouterBestioles(int nombre)
       float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
       float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 10. + 1;
-      
+
       b -> setProbabiliteDecesCollision(probaDecesCollision);
       b -> setProbabiliteClonage(probaClonage);
       b -> setDirection(direction);
