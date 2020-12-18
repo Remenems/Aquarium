@@ -290,13 +290,40 @@ void Milieu::ajouterBestioles(int nombre)
             b = (clones -> getMultiple()) -> clone();
             break;
          }*/
+   
+   //choix d'un comportement aléatoire
+   IComportement* comportement;
+   int choix = std::rand() % 5;
+   switch (choix)
+   {
+   case 0:
+      comportement = new ComportementPeureuse();
+      break;
+   
+   case 1:
+      comportement = new ComportementPrevoyante();
+      break;
+
+   case 2:
+      comportement = new ComportementKamikaze();
+      break;
+
+   case 3:
+      comportement = new ComportementGregaire();
+      break;
+
+   case 4:   
+   default:
+      comportement = new ComportementMultiple();
+      break;
+   }
 
       float probaDecesCollision = aquariumAssocie->getProbaMaxDecCollision() * (float)(std::rand()) / (float)(RAND_MAX);
       float probaClonage = aquariumAssocie -> getProbaMaxClonage() * static_cast<float>(std::rand()) / RAND_MAX;
       float direction = (static_cast<float>(std::rand()) / RAND_MAX) * 2 * M_PI;
       float vitesse = (static_cast<float>(std::rand()) / RAND_MAX) * 1. + 1;
 
-      Bestiole* b = new SimpleBestiole(0,1,1,10,1000,probaDecesCollision,probaClonage,new ComportementPrevoyante(),direction, vitesse);
+      Bestiole* b = new SimpleBestiole(0,1,1,10,1000,probaDecesCollision,probaClonage,comportement,direction, vitesse);
       b->initCoords(width, height);
       /*b -> setProbabiliteDecesCollision(probaDecesCollision);
       b -> setProbabiliteClonage(probaClonage);

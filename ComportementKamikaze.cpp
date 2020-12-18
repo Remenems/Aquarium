@@ -44,8 +44,7 @@ tuple<float,float> ComportementKamikaze::calculDirection(vector<Bestiole*> voisi
         float diffY = voisins.at(minIndex)->getY() - bestioleAssociee.getY();
         float diffX = voisins.at(minIndex)->getX() - bestioleAssociee.getX();
         //on cherche à atteindre la position actuelle de la bestiole sans prévoir ces prochains déplacements
-        if (diffY < 0){direction = (diffX==0)? M_PI/2 : M_PI - atan(diffY / diffX) ;}
-        else {direction = (diffX==0)? M_PI/2 : atan(diffY / diffX) ;}
+        direction = (diffX==0)? M_PI/2 : M_PI - atan(diffY / diffX);
         return make_tuple(direction,coefficientFonce);
     }
 }

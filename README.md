@@ -21,3 +21,6 @@ Les bestioles réagissent quand elles sont proches et de face
 
 # mainGregaire:
 lancer `make mainGregaire` puis `./mainGregaire`
+
+# mainDemo
+lancer `make mainGrDemo` puis `./mainDemo`

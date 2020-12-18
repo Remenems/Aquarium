@@ -24,6 +24,9 @@ mainGregaire : mainGregaire.cpp Aquarium.o Comportements Bestiole.o Milieu.o Cap
 mainYeux : mainYeux.cpp Aquarium.o Comportements Bestiole.o Milieu.o Capteurs Clones.o
 	g++ -Wall -std=c++11 -o mainYeux mainYeux.cpp Bestiole.o Aquarium.o Milieu.o Clones.o ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o SimpleBestiole.o Oreille.o Yeux.o -I . -lX11 -lpthread
 
+##demo
+mainDemo : mainDemo.cpp Aquarium.o Comportements Bestiole.o Milieu.o Capteurs Clones.o
+	g++ -Wall -std=c++11 -o mainDemo mainDemo.cpp Bestiole.o Aquarium.o Milieu.o Clones.o ComportementGregaire.o ComportementKamikaze.o ComportementPeureuse.o ComportementPrevoyante.o ComportementMultiple.o SimpleBestiole.o Oreille.o Yeux.o -I . -lX11 -lpthread
 
 #Structure principale
 Aquarium.o : Aquarium.h Aquarium.cpp

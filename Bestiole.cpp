@@ -231,7 +231,7 @@ bool Bestiole::mourrirSiCollision()
 {
    //renvoie en cas de collision un booléen qui dit si la bestioles doit mourrir ou rebondir
    float p = static_cast<float>( rand() )/RAND_MAX;
-   return (p < probabiliteDecesCollision);
+   return (p < probabiliteDecesCollision/carapace); //true si la bestiole doit mourrir
 }
 
 void Bestiole::draw( UImg & support )
